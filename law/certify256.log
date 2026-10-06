@@ -1,0 +1,5 @@
+N = 256: 256 configurations, positions with 12 decimals, smallest gap 0.9982
+weights: smallest 1.115e-06, largest 0.0172; change against the search at most 4.66e-10
+CERTIFIED: |N S(j) - j| <= 1e-30 for 0 < j < 256; weights sum to 1; points distinct
+share of simple points p = 0.6818289938   (1 + p)/2 = 0.8409144969
+tau0 = 1/(6 N^2) + tau/(2N) = 2.543132e-06; ceiling for V <= 10 B: 0.84092259

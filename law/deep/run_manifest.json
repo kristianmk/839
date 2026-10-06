@@ -1,0 +1,181 @@
+{
+ "written": "2026-10-05T13:46:46+02:00",
+ "note": "run_deep.sh run in a clean export (git archive) of the commit, started 2026-10-05 11:41:58 +0200 with THREADS=6, seed 1",
+ "source_commit": "0619bc26824c5b00a8ad9da6ab56d09e0d13127e",
+ "sources": [
+  {
+   "file": "deep/run_deep.sh",
+   "bytes": 1045,
+   "sha256": "b4fec4de07e6a850a7a1f470c53c53fd1efaad1a949e1859e9d85457b97ca8d9",
+   "git_blob": "07ede17b9e25a349195105f311baf5d878c51223",
+   "modified": "2026-10-05T11:41:58+02:00"
+  },
+  {
+   "file": "deep/law_deep.py",
+   "bytes": 5146,
+   "sha256": "290f3e166d95e2cd505615742872ed2783b621ddb4a85e0a5ad5f77b9dc4a7c8",
+   "git_blob": "4045c182e1f63f54ed1315d4edbaf885789fb407",
+   "modified": "2026-10-05T11:41:58+02:00"
+  },
+  {
+   "file": "deep/law_deep.cpp",
+   "bytes": 41384,
+   "sha256": "ea2a8fe80323c2d785f67c15cb8bf396e7bb60c63b583d5f8b9712c134c41dfd",
+   "git_blob": "cca4372dbfd231de68b3498c58e7af062f8fa43e",
+   "modified": "2026-10-05T11:41:58+02:00"
+  },
+  {
+   "file": "deep/CMakeLists.txt",
+   "bytes": 1755,
+   "sha256": "ec7c37db2a3d027953c8db840d02ce5260d68cba59ab4eebaa32ca0128ca4cc0",
+   "git_blob": "1b8ad2ab5fbc37fb2f48e82b83f79090fc0a7add",
+   "modified": "2026-10-05T11:41:58+02:00"
+  },
+  {
+   "file": "law_cg.py",
+   "bytes": 11343,
+   "sha256": "1dd2d3905d7c09e2b5bfc3ddef04795f473d03f88dbe544abd133aec8b036f83",
+   "git_blob": "b7129e690aed18bb429f0a77e8ec180e18c29da5",
+   "modified": "2026-10-05T11:41:58+02:00"
+  },
+  {
+   "file": "law_lp.py",
+   "bytes": 8519,
+   "sha256": "3307208de023c09f5981d9b472c7808f8f449aae81d208edb5e54ee99a5e4d7f",
+   "git_blob": "152567ab1d984c351ba19d5f7b2f24ad9361f283",
+   "modified": "2026-10-05T11:41:58+02:00"
+  },
+  {
+   "file": "law_certify.py",
+   "bytes": 4428,
+   "sha256": "280d3e634e70341b64a25f806d106addaef6c7c0b66518ad33871e298125d8d9",
+   "git_blob": "2710a200e24513a1f56c554d4e642f55dd0c136f",
+   "modified": "2026-10-05T11:41:58+02:00"
+  },
+  {
+   "file": "law_check_iv.py",
+   "bytes": 2484,
+   "sha256": "867f781408f1f1e4867e58a38be6bd61e26ecee4dbd4c8ebe7ddbd1cb50f8093",
+   "git_blob": "1c6561363b3633b05a23bccc2954229d8eb7c331",
+   "modified": "2026-10-05T11:41:58+02:00"
+  }
+ ],
+ "other_files": [
+  {
+   "file": "deep/law_deep_test.py",
+   "bytes": 10935,
+   "sha256": "3633a8eb67a8f29c16beb281789ac6f6644fe776b3709a2d2f7d2d0e43844200",
+   "git_blob": "d0dcec8bd11913cb329c7e78494a5462b95676f8",
+   "modified": "2026-10-05T11:41:58+02:00"
+  },
+  {
+   "file": "deep/deep_manifest.py",
+   "bytes": 4339,
+   "sha256": "7df9f2c71f9bd8b98b3f85089f2f1a38ecb1890f93222480b5bf5796b7234fd6",
+   "git_blob": "fc29bc50ff3b8f47296323709b1b197ab7ee512b",
+   "modified": "2026-10-05T11:41:58+02:00"
+  },
+  {
+   "file": "deep/.clang-format",
+   "bytes": 395,
+   "sha256": "59b3d9a4a95a9267feb23fb00aaad3b4dcab57a89d5c50786f6d0aa6a1dd1424",
+   "git_blob": "1ad2ca019d6d89704933cc77f691264eb5f9fefb",
+   "modified": "2026-10-05T11:41:58+02:00"
+  },
+  {
+   "file": "deep/.clang-tidy",
+   "bytes": 1885,
+   "sha256": "03473f011be65a24f04c7df2d2c01a0841098107da3e74df38999bf820632efa",
+   "git_blob": "62828c9a2183d2c69da0593f99257834a4e48554",
+   "modified": "2026-10-05T11:41:58+02:00"
+  },
+  {
+   "file": "law_oracle_test.py",
+   "bytes": 9033,
+   "sha256": "a6e7f97400d525505ef62e2818a9dfbdcede1761650c8935be9a28018e19bc0a",
+   "git_blob": "dbb1e7f7d754cb7e5f230c654c529c6e6e734628",
+   "modified": "2026-10-05T11:41:58+02:00"
+  }
+ ],
+ "start": {
+  "file": "law256.json",
+  "bytes": 1258744,
+  "sha256": "1bf1da28a14a579f0c89ed86bbb638a7d24699592aaf728b2f53f6fe9dbe4eab",
+  "git_blob": "49ff8887886886c6e8bd84d579e3bccd3005a38f",
+  "modified": "2026-10-04T22:51:29+02:00"
+ },
+ "binary": {
+  "file": "deep/build/law_deep",
+  "bytes": 78408,
+  "sha256": "4b365af2615a23683e7573ba590eb4d8c9198c3fcbcbb556e5487a4fcf2faa3c",
+  "git_blob": "dfbcc53834687d5ea4fb8bcc8e4c24a6929054de",
+  "modified": "2026-10-05T11:42:00+02:00"
+ },
+ "build": {
+  "compiler": "c++ (Ubuntu 15.2.0-4ubuntu4) 15.2.0",
+  "cmake": "cmake version 3.31.6",
+  "build_type": "Release",
+  "flags_of_build_type": "-O3 -DNDEBUG",
+  "flags": "CXX_FLAGS = -O3 -DNDEBUG -std=c++23 -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wold-style-cast -Wcast-qual -Wdouble-promotion -Wfloat-equal -Wnull-dereference -Werror -Wuseless-cast -Wduplicated-cond -Wlogical-op -march=native -fopenmp",
+  "defines": "CXX_DEFINES = -D_GLIBCXX_ASSERTIONS"
+ },
+ "python": {
+  "version": "3.13.7",
+  "packages": {
+   "numpy": "2.5.3",
+   "scipy": "1.18.1",
+   "highspy": "1.15.1",
+   "python-flint": "0.9.0",
+   "mpmath": "1.4.1"
+  }
+ },
+ "machine": {
+  "architecture": "aarch64",
+  "processor": "Apple / -",
+  "logical_cores": 12,
+  "system": "Linux-6.17.0-41-generic-aarch64-with-glibc2.42"
+ },
+ "git": {
+  "repository_head": "71ccae14af23ee5ad4ef812d390d1944ed98fed9",
+  "branch": "main",
+  "sources_tracked_in_this_repository": false,
+  "remark": "the files are an export of the commit named in source_commit; `git ls-tree -r` of that commit shows the same blob ids"
+ },
+ "results": [
+  {
+   "file": "deep/law256_deep.json",
+   "bytes": 1263294,
+   "sha256": "50b6bdbdfa9e78b79e23ee86345211ec9173da2ccd6720b55042affc7a6f1ec2",
+   "git_blob": "b6ab2903c3a0d5a0909df3ade24b7230ebe3b4cc",
+   "modified": "2026-10-05T13:30:57+02:00"
+  },
+  {
+   "file": "deep/law256_deep_certified.json",
+   "bytes": 1944256,
+   "sha256": "2366c86ad0fc202a89b4d5e83c618d38d58c700f126fdced273ad19543f965e9",
+   "git_blob": "be3359aa03a1b8262510839791ed615a84f6c6eb",
+   "modified": "2026-10-05T13:32:27+02:00"
+  },
+  {
+   "file": "deep/law256_deep.log",
+   "bytes": 131543,
+   "sha256": "7814a24ed3be677fc0cf7914a9e4d522bebe57e5e2b341666d1ca3a02b61dd0a",
+   "git_blob": "1448d1764542b20b94db62710ddc0aa3dd10a0e5",
+   "modified": "2026-10-05T13:30:57+02:00"
+  },
+  {
+   "file": "deep/certify256_deep.log",
+   "bytes": 394,
+   "sha256": "d94abbe8aa7cf8ac804b1e82339db2c60c5431c8120b78aef1d6bad6ef3f7c3b",
+   "git_blob": "77410bdd13d5506ba64c507a7f30c61dcb98415f",
+   "modified": "2026-10-05T13:32:27+02:00"
+  },
+  {
+   "file": "deep/check256_deep.log",
+   "bytes": 213,
+   "sha256": "bf5ce507a3b77ae0524a7a2b537445461ca3e64eca668a7275fdc8d89fb7a312",
+   "git_blob": "5901094771fcec2813a9e9d057d158a7fecdd9ae",
+   "modified": "2026-10-05T13:46:46+02:00"
+  }
+ ]
+}

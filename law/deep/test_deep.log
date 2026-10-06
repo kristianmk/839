@@ -1,0 +1,93 @@
+ok   N = 16: the run succeeds
+ok   N = 16: cost reported by law_deep equals the cost recomputed in Python  92 configurations, max difference 3.6e-15
+ok   N = 16: marks are 1 or 2 and sum to the period
+ok   N = 16: positions in order, all gaps at least 0.5  smallest gap 0.500000
+ok   N = 16: every chain returns between 1 and 4 configurations
+ok   N = 16: the best configuration of a chain is not worse than its start  13 starts with legal gaps
+ok   N = 16: some chains change the number of points  24 of 24 chains
+ok   N = 32: the run succeeds
+ok   N = 32: cost reported by law_deep equals the cost recomputed in Python  95 configurations, max difference 1.4e-14
+ok   N = 32: marks are 1 or 2 and sum to the period
+ok   N = 32: positions in order, all gaps at least 0.5  smallest gap 0.500000
+ok   N = 32: every chain returns between 1 and 4 configurations
+ok   N = 32: the best configuration of a chain is not worse than its start  12 starts with legal gaps
+ok   N = 32: some chains change the number of points  24 of 24 chains
+ok   N = 64: the run succeeds
+ok   N = 64: cost reported by law_deep equals the cost recomputed in Python  96 configurations, max difference 4.3e-14
+ok   N = 64: marks are 1 or 2 and sum to the period
+ok   N = 64: positions in order, all gaps at least 0.5  smallest gap 0.500000
+ok   N = 64: every chain returns between 1 and 4 configurations
+ok   N = 64: the best configuration of a chain is not worse than its start  6 starts with legal gaps
+ok   N = 64: some chains change the number of points  24 of 24 chains
+ok   the output does not depend on the number of threads
+ok   the same job gives the same output again
+ok   another seed gives another output
+ok   sanitizer build: valid job runs without a report
+ok   sanitizer build: the output does not depend on the number of threads
+ok   release: empty file -> exit code 3
+ok   sanitizer: empty file -> exit code 3
+ok   release: text instead of numbers -> exit code 3
+ok   sanitizer: text instead of numbers -> exit code 3
+ok   release: header without the four chain parameters -> exit code 3
+ok   sanitizer: header without the four chain parameters -> exit code 3
+ok   release: period 1 -> exit code 3
+ok   sanitizer: period 1 -> exit code 3
+ok   release: negative period -> exit code 3
+ok   sanitizer: negative period -> exit code 3
+ok   release: period above the limit -> exit code 3
+ok   sanitizer: period above the limit -> exit code 3
+ok   release: gap not positive -> exit code 3
+ok   sanitizer: gap not positive -> exit code 3
+ok   release: gap not a number -> exit code 3
+ok   sanitizer: gap not a number -> exit code 3
+ok   release: iteration limit 0 -> exit code 3
+ok   sanitizer: iteration limit 0 -> exit code 3
+ok   release: too many chains -> exit code 3
+ok   sanitizer: too many chains -> exit code 3
+ok   release: too many steps -> exit code 3
+ok   sanitizer: too many steps -> exit code 3
+ok   release: nothing to keep -> exit code 3
+ok   sanitizer: nothing to keep -> exit code 3
+ok   release: too many to keep -> exit code 3
+ok   sanitizer: too many to keep -> exit code 3
+ok   release: negative temperature -> exit code 3
+ok   sanitizer: negative temperature -> exit code 3
+ok   release: temperature not a number -> exit code 3
+ok   sanitizer: temperature not a number -> exit code 3
+ok   release: too few prices -> exit code 3
+ok   sanitizer: too few prices -> exit code 3
+ok   release: infinite price -> exit code 3
+ok   sanitizer: infinite price -> exit code 3
+ok   release: chain missing -> exit code 3
+ok   sanitizer: chain missing -> exit code 3
+ok   release: more points than the period -> exit code 3
+ok   sanitizer: more points than the period -> exit code 3
+ok   release: one point only -> exit code 3
+ok   sanitizer: one point only -> exit code 3
+ok   release: mark 3 -> exit code 3
+ok   sanitizer: mark 3 -> exit code 3
+ok   release: mark 1.5 -> exit code 3
+ok   sanitizer: mark 1.5 -> exit code 3
+ok   release: marks do not sum to the period -> exit code 3
+ok   sanitizer: marks do not sum to the period -> exit code 3
+ok   release: positions not sorted -> exit code 3
+ok   sanitizer: positions not sorted -> exit code 3
+ok   release: position outside the period -> exit code 3
+ok   sanitizer: position outside the period -> exit code 3
+ok   release: negative position -> exit code 3
+ok   sanitizer: negative position -> exit code 3
+ok   release: no room for the minimum gap -> exit code 3
+ok   sanitizer: no room for the minimum gap -> exit code 3
+ok   release: truncated positions -> exit code 3
+ok   sanitizer: truncated positions -> exit code 3
+ok   release: no chains (valid) -> exit code 0
+ok   sanitizer: no chains (valid) -> exit code 0
+ok   release: no steps (valid: the start is relaxed and returned) -> exit code 0
+ok   sanitizer: no steps (valid: the start is relaxed and returned) -> exit code 0
+ok   release: temperature 0 (valid: only improvements are accepted) -> exit code 0
+ok   sanitizer: temperature 0 (valid: only improvements are accepted) -> exit code 0
+ok   no arguments -> exit code 2
+ok   missing input file -> exit code 3
+ok   output file cannot be written -> exit code 4
+
+ALL TESTS PASSED

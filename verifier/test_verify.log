@@ -1,0 +1,108 @@
+ok    release: empty parameter file -> exit code 3
+ok    release: wrong first keyword -> exit code 3
+ok    release: unknown format version -> exit code 3
+ok    release: keyword misspelt -> exit code 3
+ok    release: keywords in another order -> exit code 3
+ok    release: a number that is not an integer -> exit code 3
+ok    release: a word in place of a number -> exit code 3
+ok    release: one weight missing -> exit code 3
+ok    release: one number too many -> exit code 3
+ok    release: text after the end -> exit code 3
+ok    release: the end is missing -> exit code 3
+ok    release: a number beyond 64 bits -> exit code 3
+ok    release: grid length 0 -> exit code 3
+ok    release: grid length above the limit -> exit code 3
+ok    release: grid steps per unit 0 -> exit code 3
+ok    release: scale 0 -> exit code 3
+ok    release: scale above the limit -> exit code 3
+ok    release: negative alpha -> exit code 3
+ok    release: smallest gap 0 -> exit code 3
+ok    release: smallest gap beyond the grid -> exit code 3
+ok    release: negative first knot -> exit code 3
+ok    release: knot step 0 -> exit code 3
+ok    release: knots beyond the limit -> exit code 3
+ok    release: a weight above the limit of magnitude -> exit code 3
+ok    release: scale not divisible by the grid -> exit code 3
+ok    release: scale not divisible by the knot step -> exit code 3
+ok    release: a negative weight -> exit code 3
+ok    release: weights above the cap -> exit code 3
+ok    release: a weight that decreases with the label -> exit code 3
+ok    release: a negative reward -> exit code 3
+ok    release: reward of a double point below that of a simple point -> exit code 3
+ok    release: functions B_r that do not sum to zero -> exit code 3
+ok    release: a function B_r that does not vanish at its last knot -> exit code 3
+ok    release: alpha too small for the length of the grid -> exit code 3
+ok    release: rewards too large for the length of the grid -> exit code 3
+ok    release: bound for the 64-bit intermediates exceeded -> exit code 3
+ok    release: empty table -> exit code 3
+ok    release: table one byte short -> exit code 3
+ok    release: table one byte long -> exit code 3
+ok    release: table one entry short -> exit code 3
+ok    release: table entry above the scale -> exit code 3
+ok    release: no arguments -> exit code 2
+ok    release: missing parameter file -> exit code 3
+ok    release: missing table -> exit code 3
+ok    release: data for eight points, program for seven -> exit code 3
+ok    release: data for seven points, program for eight -> exit code 3
+ok    release: weights reduced by one tenth -> exit code 1, not accepted
+ok    release: weights halved -> exit code 1, not accepted
+ok    release: functions B_r removed -> exit code 1, not accepted
+ok    release: second certificate, weights reduced by one tenth -> exit code 1, not accepted
+ok    release: third certificate, weights halved -> exit code 1, not accepted
+ok    release: alpha doubled -> accepted with 559 boxes
+ok    release: alpha times four -> accepted with 1 boxes
+ok    sanitizer: empty parameter file -> exit code 3
+ok    sanitizer: wrong first keyword -> exit code 3
+ok    sanitizer: unknown format version -> exit code 3
+ok    sanitizer: keyword misspelt -> exit code 3
+ok    sanitizer: keywords in another order -> exit code 3
+ok    sanitizer: a number that is not an integer -> exit code 3
+ok    sanitizer: a word in place of a number -> exit code 3
+ok    sanitizer: one weight missing -> exit code 3
+ok    sanitizer: one number too many -> exit code 3
+ok    sanitizer: text after the end -> exit code 3
+ok    sanitizer: the end is missing -> exit code 3
+ok    sanitizer: a number beyond 64 bits -> exit code 3
+ok    sanitizer: grid length 0 -> exit code 3
+ok    sanitizer: grid length above the limit -> exit code 3
+ok    sanitizer: grid steps per unit 0 -> exit code 3
+ok    sanitizer: scale 0 -> exit code 3
+ok    sanitizer: scale above the limit -> exit code 3
+ok    sanitizer: negative alpha -> exit code 3
+ok    sanitizer: smallest gap 0 -> exit code 3
+ok    sanitizer: smallest gap beyond the grid -> exit code 3
+ok    sanitizer: negative first knot -> exit code 3
+ok    sanitizer: knot step 0 -> exit code 3
+ok    sanitizer: knots beyond the limit -> exit code 3
+ok    sanitizer: a weight above the limit of magnitude -> exit code 3
+ok    sanitizer: scale not divisible by the grid -> exit code 3
+ok    sanitizer: scale not divisible by the knot step -> exit code 3
+ok    sanitizer: a negative weight -> exit code 3
+ok    sanitizer: weights above the cap -> exit code 3
+ok    sanitizer: a weight that decreases with the label -> exit code 3
+ok    sanitizer: a negative reward -> exit code 3
+ok    sanitizer: reward of a double point below that of a simple point -> exit code 3
+ok    sanitizer: functions B_r that do not sum to zero -> exit code 3
+ok    sanitizer: a function B_r that does not vanish at its last knot -> exit code 3
+ok    sanitizer: alpha too small for the length of the grid -> exit code 3
+ok    sanitizer: rewards too large for the length of the grid -> exit code 3
+ok    sanitizer: bound for the 64-bit intermediates exceeded -> exit code 3
+ok    sanitizer: empty table -> exit code 3
+ok    sanitizer: table one byte short -> exit code 3
+ok    sanitizer: table one byte long -> exit code 3
+ok    sanitizer: table one entry short -> exit code 3
+ok    sanitizer: table entry above the scale -> exit code 3
+ok    sanitizer: no arguments -> exit code 2
+ok    sanitizer: missing parameter file -> exit code 3
+ok    sanitizer: missing table -> exit code 3
+ok    sanitizer: data for eight points, program for seven -> exit code 3
+ok    sanitizer: data for seven points, program for eight -> exit code 3
+ok    sanitizer: weights reduced by one tenth -> exit code 1, not accepted
+ok    sanitizer: weights halved -> exit code 1, not accepted
+ok    sanitizer: functions B_r removed -> exit code 1, not accepted
+ok    sanitizer: second certificate, weights reduced by one tenth -> exit code 1, not accepted
+ok    sanitizer: third certificate, weights halved -> exit code 1, not accepted
+ok    sanitizer: alpha doubled -> accepted with 559 boxes
+ok    sanitizer: alpha times four -> accepted with 1 boxes
+
+ALL TESTS PASSED

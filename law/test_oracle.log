@@ -1,0 +1,70 @@
+ok   N = 16: value reported by the kernel equals the value recomputed in Python  max difference 4.4e-15
+ok   N = 16: all gaps at least 0.5  smallest gap 0.500000
+ok   N = 16: no result is worse than its start  38 starts with legal gaps
+ok   N = 16: results are stationary  largest gradient 4.9e-06
+ok   N = 16: the reference optimiser does not improve the results  largest relative gain -2.3e-07
+ok   N = 32: value reported by the kernel equals the value recomputed in Python  max difference 1.1e-14
+ok   N = 32: all gaps at least 0.5  smallest gap 0.500000
+ok   N = 32: no result is worse than its start  21 starts with legal gaps
+ok   N = 32: results are stationary  largest gradient 7.2e-06
+ok   N = 32: the reference optimiser does not improve the results  largest relative gain -2.3e-07
+ok   N = 64: value reported by the kernel equals the value recomputed in Python  max difference 3.6e-14
+ok   N = 64: all gaps at least 0.5  smallest gap 0.500000
+ok   N = 64: no result is worse than its start  15 starts with legal gaps
+ok   N = 64: results are stationary  largest gradient 8.3e-06
+ok   N = 64: the reference optimiser does not improve the results  largest relative gain 4.0e-08
+ok   the output does not depend on the number of threads
+ok   sanitizer build: valid job runs without a report
+ok   release: empty file -> exit code 3
+ok   sanitizer: empty file -> exit code 3
+ok   release: text instead of numbers -> exit code 3
+ok   sanitizer: text instead of numbers -> exit code 3
+ok   release: period 1 -> exit code 3
+ok   sanitizer: period 1 -> exit code 3
+ok   release: negative period -> exit code 3
+ok   sanitizer: negative period -> exit code 3
+ok   release: period above the limit -> exit code 3
+ok   sanitizer: period above the limit -> exit code 3
+ok   release: gap not positive -> exit code 3
+ok   sanitizer: gap not positive -> exit code 3
+ok   release: gap not a number -> exit code 3
+ok   sanitizer: gap not a number -> exit code 3
+ok   release: iteration limit 0 -> exit code 3
+ok   sanitizer: iteration limit 0 -> exit code 3
+ok   release: too many candidates -> exit code 3
+ok   sanitizer: too many candidates -> exit code 3
+ok   release: too few prices -> exit code 3
+ok   sanitizer: too few prices -> exit code 3
+ok   release: infinite price -> exit code 3
+ok   sanitizer: infinite price -> exit code 3
+ok   release: candidate missing -> exit code 3
+ok   sanitizer: candidate missing -> exit code 3
+ok   release: more points than the period -> exit code 3
+ok   sanitizer: more points than the period -> exit code 3
+ok   release: one point only -> exit code 3
+ok   sanitizer: one point only -> exit code 3
+ok   release: mark 3 -> exit code 3
+ok   sanitizer: mark 3 -> exit code 3
+ok   release: mark 1.5 -> exit code 3
+ok   sanitizer: mark 1.5 -> exit code 3
+ok   release: marks do not sum to the period -> exit code 3
+ok   sanitizer: marks do not sum to the period -> exit code 3
+ok   release: positions not sorted -> exit code 3
+ok   sanitizer: positions not sorted -> exit code 3
+ok   release: position outside the period -> exit code 3
+ok   sanitizer: position outside the period -> exit code 3
+ok   release: negative position -> exit code 3
+ok   sanitizer: negative position -> exit code 3
+ok   release: no room for the minimum gap -> exit code 3
+ok   sanitizer: no room for the minimum gap -> exit code 3
+ok   release: truncated positions -> exit code 3
+ok   sanitizer: truncated positions -> exit code 3
+ok   release: no candidates (valid) -> exit code 0
+ok   sanitizer: no candidates (valid) -> exit code 0
+ok   release: coincident points (valid, raised to the minimum gap) -> exit code 0
+ok   sanitizer: coincident points (valid, raised to the minimum gap) -> exit code 0
+ok   no arguments -> exit code 2
+ok   missing input file -> exit code 3
+ok   output file cannot be written -> exit code 4
+
+ALL TESTS PASSED

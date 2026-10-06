@@ -1,0 +1,35 @@
+/-
+Line889/Kernel/Array.lean — the kernel table of the third window as an array, for the
+local-inequality checker.
+
+`kTabArray` holds `kTab k` for `k = 0, …, tabR`: 262144 entries, 16 periods of 16384 cells. It
+computes the 8192 trigonometric enclosures once (`trigArr`) and shares them between the 16
+periods of the table, so that the evaluation of the whole array takes well under a minute.
+
+This file contains the definitions and the size of the array, and nothing else: it and
+`Line889/Kernel/Compute.lean` are what the compiled run of the checker imports from this
+directory, so that the run does not depend on the proofs about the kernel. That the array agrees
+with `kTab` (`Kernel.kTabArray_getElem`) and is a sound lower enclosure of `K²`
+(`kTabArray_sound`) is proved in `Line889/Kernel/Table.lean`. The three names `kTabArray`,
+`kTabArray_size` and `kTabArray_sound` are the interface used by `Line889/Local`.
+-/
+import Line889.Kernel.Compute
+
+namespace Line889.Kernel
+
+/-- The 8192 enclosures `Distinct839.Kernel.trigEncl j`, `j < H/2`, computed once. -/
+def trigArr : Array Distinct839.Kernel.TrigEncl :=
+  Array.ofFn (n := 8192) fun j => Distinct839.Kernel.trigEncl j
+
+/-- `Distinct839.Kernel.trigEncl j`, read from `trigArr` when `j` is in range. -/
+def trigCached (j : ℕ) : Distinct839.Kernel.TrigEncl :=
+  if h : j < trigArr.size then trigArr[j] else Distinct839.Kernel.trigEncl j
+
+/-- **The kernel table as an array**: `kTabArray[k] = kTab k` for `k ≤ tabR = 262143`. -/
+def _root_.Line889.kTabArray : Array ℕ :=
+  Array.ofFn (n := tabR + 1) fun k => kTabWith trigCached k
+
+/-- The table has `tabR + 1 = 262144` entries. -/
+theorem _root_.Line889.kTabArray_size : kTabArray.size = tabR + 1 := Array.size_ofFn
+
+end Line889.Kernel

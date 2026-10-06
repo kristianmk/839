@@ -1,0 +1,11 @@
+{
+  "status": "PASS_COB_CONTINUUM",
+  "nodes": 60467309,
+  "leaves": 30233655,
+  "basic": 21157274,
+  "affine": 9076381,
+  "max_stack": 49,
+  "elapsed_seconds": 246.0792760848999,
+  "int64_bound": 1069992623523942352,
+  "table_sha256": "b80e5a8c70e4beb3b872dada426016bc97b0954c1a8a5eabaeb40fba49cded36"
+}

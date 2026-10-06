@@ -1,0 +1,560 @@
+This file is a patch to the Lean library Zeta23 of https://github.com/anthropics/formal-math
+(directory zeta23), commit fbdc36bbf17d20af3fd0447c6d1a8a02773c9844.
+
+LICENCE. The library is Copyright (c) 2026 Anthropic, PBC and is released under the Apache
+License, Version 2.0. This patch consists of lines of that library and of changes to them, and
+it is distributed under the same licence, the Apache License, Version 2.0. A copy of the licence
+is in the file LICENSE next to this file, and the library's NOTICE file is reproduced in the
+file NOTICE.
+
+CHANGES. The fourteen files named below were changed on 2 October 2026 by Kristian Muri Knausgård
+<kristianmk@ieee.org>, with AI assistance (Claude, Anthropic). Two lower bounds in the hypotheses
+of the general window machinery are relaxed, 1/2 <= b to 1/8 <= b and 1/2 <= a to 1/4 <= a, and
+the proofs that used them are adjusted. The five declarations whose content changes are
+propositions that collect hypotheses (LocalHypsCore, LocalHypsCoreW, AdmFamily, WindowZeroSide,
+FactsXi); each of them now asks for less. No definition of a mathematical object (zeros, counts,
+windows, constants) is changed, no axiom and no unproved statement is added, and the library's
+Challenge.lean, ChallengeDeps.lean and Solution.lean are not touched. Files to which this patch
+has been applied are modified files in the sense of the licence and are no longer the files
+published by Anthropic.
+
+Apply in the directory zeta23 of the library:  patch -p1 < upstream_relax.patch
+
+diff -ruN zeta23/Zeta23/PrimeSideA/Basic.lean zeta23_patch/Zeta23/PrimeSideA/Basic.lean
+--- zeta23/Zeta23/PrimeSideA/Basic.lean	2026-10-02 16:44:00.923624745 +0200
++++ zeta23_patch/Zeta23/PrimeSideA/Basic.lean	2026-10-02 17:29:27.177217032 +0200
+@@ -352,7 +352,7 @@
+ 
+ "Nothing in Sections 4–5 used that φ is flat-topped" — except the [eq:gbounds] plateau lower
+ bound and the [eq:abdef] lower bound on b.  LocalHypsCore is LocalHyps minus exactly those two
+-facts, with the window-generic replacements g_nonneg and b_ge_half (both hold for the
++facts, with the window-generic replacements g_nonneg and b_ge_eighth (both hold for the
+ Montgomery–Taylor window of [thm:D], which does not satisfy LocalHyps).  Surviving field names
+ are identical to LocalHyps'.  The window-generic §5 results can be re-typed over this
+ structure; the structure itself is purely additive. -/
+@@ -423,10 +423,10 @@
+   /-- [lem:poisson] (★) `Σ_{k∈ℤ} φ̂(τ−τ_k) φ̂(τ'−τ_k) = L Φ(τ−τ')` (§2.2). -/
+   poisson : ∀ τ τ', HasSum (fun k : ℤ => F.phiHat (τ - p.tau k) * F.phiHat (τ' - p.tau k))
+     (p.L * F.Phi (τ - τ'))
+-  /-- window-generic remnant of [eq:abdef]: `1/2 ≤ b ≤ a ≤ 1` (the flat-top `1 − 2w/L ≤ b`
+-  is NOT here; 1/2 suffices for every positivity/division use and holds for the
+-  Montgomery–Taylor window). -/
+-  b_ge_half : 1 / 2 ≤ F.b
++  /-- window-generic remnant of [eq:abdef]: `1/8 ≤ b ≤ a ≤ 1` (the flat-top `1 − 2w/L ≤ b`
++  is NOT here; any fixed positive lower bound suffices for every positivity/division use; the
++  Montgomery–Taylor and quartic windows have `b ≥ 1/2`, and `1/8` admits rescaled windows). -/
++  b_ge_eighth : 1 / 8 ≤ F.b
+   b_le_a : F.b ≤ F.a
+   a_le_one : F.a ≤ 1
+   /-- [eq:psidef] in majorant form, with the [eq:psiints] integrals (`Ψ₀ = 4 + 2log(c_ϱL/4w)`,
+@@ -446,7 +446,7 @@
+ 
+ 
+ /-- every flat-top taper datum satisfies the window-generic core:
+-b ≥ 1 − 2w/L ≥ 3/4 ≥ 1/2 ([eq:abdef] + [eq:wrange]), g ≥ 0 (plateau bound). -/
++b ≥ 1 − 2w/L ≥ 3/4 ≥ 1/8 ([eq:abdef] + [eq:wrange]), g ≥ 0 (plateau bound). -/
+ theorem LocalHyps.toCore {cϱ : ℝ} {p : Setting} {F : LocalFun} (hF : LocalHyps cϱ p F) :
+     LocalHypsCore cϱ p F where
+   four_le_cϱ := hF.four_le_cϱ
+@@ -484,7 +484,7 @@
+   Phi_sq_integral := hF.Phi_sq_integral
+   Phi_sq_fourier := hF.Phi_sq_fourier
+   poisson := hF.poisson
+-  b_ge_half := by
++  b_ge_eighth := by
+     have h1 : 2 * p.w / p.L ≤ 1 / 4 := by
+       rw [div_le_iff₀ hF.L_pos]
+       linarith [hF.w_le]
+@@ -519,7 +519,7 @@
+   linarith [hF.eight_le_L]
+ 
+ lemma LocalHypsCore.b_pos (hF : LocalHypsCore cϱ p F) : 0 < F.b := by
+-  linarith [hF.b_ge_half]
++  linarith [hF.b_ge_eighth]
+ 
+ lemma LocalHypsCore.a_pos (hF : LocalHypsCore cϱ p F) : 0 < F.a := hF.b_pos.trans_le hF.b_le_a
+ 
+@@ -621,10 +621,10 @@
+   /-- [lem:poisson] (★) `Σ_{k∈ℤ} φ̂(τ−τ_k) φ̂(τ'−τ_k) = L Φ(τ−τ')` (§2.2). -/
+   poisson : ∀ τ τ', HasSum (fun k : ℤ => F.phiHat (τ - p.tau k) * F.phiHat (τ' - p.tau k))
+     (p.L * F.Phi (τ - τ'))
+-  /-- window-generic remnant of [eq:abdef]: `1/2 ≤ b ≤ a ≤ 1` (the flat-top `1 − 2w/L ≤ b`
+-  is NOT here; 1/2 suffices for every positivity/division use and holds for the
+-  Montgomery–Taylor window). -/
+-  b_ge_half : 1 / 2 ≤ F.b
++  /-- window-generic remnant of [eq:abdef]: `1/8 ≤ b ≤ a ≤ 1` (the flat-top `1 − 2w/L ≤ b`
++  is NOT here; any fixed positive lower bound suffices for every positivity/division use; the
++  Montgomery–Taylor and quartic windows have `b ≥ 1/2`, and `1/8` admits rescaled windows). -/
++  b_ge_eighth : 1 / 8 ≤ F.b
+   b_le_a : F.b ≤ F.a
+   a_le_one : F.a ≤ 1
+   /-- [eq:psidef] in majorant form, with the [eq:psiints] integrals (`Ψ₀ = 4 + 2log(c_ϱL/4w)`,
+@@ -644,10 +644,10 @@
+ 
+ 
+ /-- every flat-top taper datum satisfies the window-generic core:
+-b ≥ 1 − 2w/L ≥ 3/4 ≥ 1/2 ([eq:abdef] + [eq:wrange]), g ≥ 0 (plateau bound). -/
++b ≥ 1 − 2w/L ≥ 3/4 ≥ 1/8 ([eq:abdef] + [eq:wrange]), g ≥ 0 (plateau bound). -/
+ lemma LocalHypsCore.toCoreW {cϱ : ℝ} {p : Setting} {F : LocalFun} (hF : LocalHypsCore cϱ p F) :
+     LocalHypsCoreW cϱ p F :=
+-  ⟨hF.four_le_cϱ, hF.lam_pos, hF.one_le_w, hF.w_le, hF.one_le_l, hF.phiHat_cont, hF.phiHat_even, hF.phiHat_le_L, hF.phiHat_le_inv, hF.phiHat_le_sq, hF.phiHat_sq_integrable, hF.phiHat_sq_mul_abs_integrable, hF.integral_phiHat_sq_mul_abs_le, hF.phiHat_sq_mul_sq_integrable, hF.integral_phiHat_sq_mul_sq_le, hF.phiHat_sq_integral, hF.phiHat_sq_fourier, hF.g_nonneg, hF.g_le_Aphi, hF.Aphi_le, hF.Phi_contDiff, hF.Phi_even, hF.Phi_le_L, hF.Phi_le_inv, hF.Phi_le_sq, hF.Phi_sq_integrable, hF.Phi_sq_mul_abs_integrable, hF.integral_Phi_sq_mul_abs_le, hF.Phi_sq_mul_sq_integrable, hF.integral_Phi_sq_mul_sq_le, hF.Phi_zero, hF.Phi_sq_integral, hF.Phi_sq_fourier, hF.poisson, hF.b_ge_half, hF.b_le_a, hF.a_le_one, hF.psi_integrable, hF.psi_sq_integrable, hF.integral_psi_Ioi_le, hF.integral_psi_sq_le, hF.phiHat_le_psi, hF.Phi_le_psi, hF.PiX_cont, hF.PiX_bound⟩
++  ⟨hF.four_le_cϱ, hF.lam_pos, hF.one_le_w, hF.w_le, hF.one_le_l, hF.phiHat_cont, hF.phiHat_even, hF.phiHat_le_L, hF.phiHat_le_inv, hF.phiHat_le_sq, hF.phiHat_sq_integrable, hF.phiHat_sq_mul_abs_integrable, hF.integral_phiHat_sq_mul_abs_le, hF.phiHat_sq_mul_sq_integrable, hF.integral_phiHat_sq_mul_sq_le, hF.phiHat_sq_integral, hF.phiHat_sq_fourier, hF.g_nonneg, hF.g_le_Aphi, hF.Aphi_le, hF.Phi_contDiff, hF.Phi_even, hF.Phi_le_L, hF.Phi_le_inv, hF.Phi_le_sq, hF.Phi_sq_integrable, hF.Phi_sq_mul_abs_integrable, hF.integral_Phi_sq_mul_abs_le, hF.Phi_sq_mul_sq_integrable, hF.integral_Phi_sq_mul_sq_le, hF.Phi_zero, hF.Phi_sq_integral, hF.Phi_sq_fourier, hF.poisson, hF.b_ge_eighth, hF.b_le_a, hF.a_le_one, hF.psi_integrable, hF.psi_sq_integrable, hF.integral_psi_Ioi_le, hF.integral_psi_sq_le, hF.phiHat_le_psi, hF.Phi_le_psi, hF.PiX_cont, hF.PiX_bound⟩
+ 
+ lemma LocalHypsCoreW.eight_le_L {cϱ : ℝ} {p : Setting} {F : LocalFun}
+     (hF : LocalHypsCoreW cϱ p F) : 8 ≤ p.L := by
+@@ -659,7 +659,7 @@
+ 
+ lemma LocalHypsCoreW.b_pos {cϱ : ℝ} {p : Setting} {F : LocalFun}
+     (hF : LocalHypsCoreW cϱ p F) : 0 < F.b := by
+-  linarith [hF.b_ge_half]
++  linarith [hF.b_ge_eighth]
+ 
+ lemma LocalHypsCoreW.a_pos {cϱ : ℝ} {p : Setting} {F : LocalFun}
+     (hF : LocalHypsCoreW cϱ p F) : 0 < F.a := hF.b_pos.trans_le hF.b_le_a
+diff -ruN zeta23/Zeta23/ThmD/BridgeD.lean zeta23_patch/Zeta23/ThmD/BridgeD.lean
+--- zeta23/Zeta23/ThmD/BridgeD.lean	2026-10-02 16:44:00.925320596 +0200
++++ zeta23_patch/Zeta23/ThmD/BridgeD.lean	2026-10-02 17:31:27.584903798 +0200
+@@ -109,7 +109,7 @@
+   refine ⟨T₀, fun T hT => ?_⟩
+   obtain ⟨h1, h8, h4π, hX1⟩ := hT₀ T hT
+   exact AdmWindow.localHypsCore (P.toSetting T) (admWindow_params hP h8) hP.lam_pos hP.lam_le_one
+-    h1 hX1 (bv_phiD_ge_half hP.taper hP.lam_pos hP.lam_le_one hP.one_le_w h8 h4π)
++    h1 hX1 (le_trans (by norm_num) (bv_phiD_ge_half hP.taper hP.lam_pos hP.lam_le_one hP.one_le_w h8 h4π))
+ 
+ end ThmD
+ end Zeta23
+diff -ruN zeta23/Zeta23/ThmD/Concrete.lean zeta23_patch/Zeta23/ThmD/Concrete.lean
+--- zeta23/Zeta23/ThmD/Concrete.lean	2026-10-02 16:44:00.925361013 +0200
++++ zeta23_patch/Zeta23/ThmD/Concrete.lean	2026-10-02 17:32:21.366348645 +0200
+@@ -140,10 +140,14 @@
+     ?prop_trace, e_ends, ?Msplit, e_mumu, e_PP, ?sumJ, e_muP, e_muPi, e_PPi, e_PiPi⟩
+   case ab_range =>
+     filter_upwards [eventually_ge_atTop T₀, eventually_L_ge P hP.lam_pos 8,
+-      eventually_L_ge P hP.lam_pos (2 * P.w)] with T hT hL8 hLw
++      eventually_L_ge P hP.lam_pos (2 * P.w), eventually_L_ge P hP.lam_pos (8 * P.w),
++      eventually_L_ge P hP.lam_pos (4 * π * P.w)] with T hT hL8 hLw h8w h4π
+     have hF := hT₀ T hT
+     have hL0 : 0 < P.L T := by linarith
+-    refine ⟨hF.b_ge_half, hF.b_le_a, hF.a_le_one, ?_, ?_⟩
++    -- `LocalHypsCore` only carries `1/8 ≤ b`; the Montgomery–Taylor window has `b ≥ 1/2` (BridgeD).
++    have hbD : 1 / 2 ≤ (P.localFunD T).b :=
++      bv_phiD_ge_half hP.taper hP.lam_pos hP.lam_le_one hP.one_le_w h8w h4π
++    refine ⟨hbD, hF.b_le_a, hF.a_le_one, ?_, ?_⟩
+     · apply mul_nonneg (by positivity)
+       apply intervalIntegral.integral_nonneg (by linarith : (0:ℝ) ≤ P.L T)
+       intro y hy
+diff -ruN zeta23/Zeta23/ThmD/WindowLocalHyps.lean zeta23_patch/Zeta23/ThmD/WindowLocalHyps.lean
+--- zeta23/Zeta23/ThmD/WindowLocalHyps.lean	2026-10-02 16:44:00.925701309 +0200
++++ zeta23_patch/Zeta23/ThmD/WindowLocalHyps.lean	2026-10-02 17:31:27.584818506 +0200
+@@ -5,7 +5,7 @@
+ -/
+ /-
+ Zeta23/ThmD/WindowLocalHyps.lean — every admissible window satisfies `LocalHypsCore`.  Assembly of Zeta23/ThmD/WindowCore.lean (Fourier/Poisson side) and
+-Zeta23/ThmD/PsiC.lean (ψ-majorant integrals), field by field; `b ≥ 1/2` is an input (it is a
++Zeta23/ThmD/PsiC.lean (ψ-majorant integrals), field by field; `b ≥ 1/8` is an input (it is a
+ property of the particular window — for `φ_D` it holds for large `T`, see BridgeD.lean).
+ -/
+ import Zeta23.ThmD.WindowCore
+@@ -20,10 +20,10 @@
+ 
+ /-- **Admissible window ⇒ `LocalHypsCore`.**  For any `p : Setting` in the regime
+ (`0 < λ ≤ 1`, `l ≥ 1`, `X ≥ 1`) and any window `v` admissible at scale `(p.L, p.w)` with constant
+-`c` and `b_v ≥ 1/2`, the local data `(v̂, V, A_v, g_v, a_v, b_v)` satisfy all of §5's hypotheses. -/
++`c` and `b_v ≥ 1/8`, the local data `(v̂, V, A_v, g_v, a_v, b_v)` satisfy all of §5's hypotheses. -/
+ theorem localHypsCore {v : ℝ → ℝ} {c : ℝ} (p : PrimeSide.Setting) (hW : AdmWindow v p.L p.w c)
+     (hlam : 0 < p.lam) (hlam1 : p.lam ≤ 1) (hl : 1 ≤ p.l) (hX : 1 ≤ p.X)
+-    (hb : 1 / 2 ≤ bv v p.L) :
++    (hb : 1 / 8 ≤ bv v p.L) :
+     PrimeSide.LocalHypsCore c p (localFun v p.L) := by
+   have hc := hW.four_le_c
+   have hw := hW.one_le_w
+@@ -75,7 +75,7 @@
+     Phi_sq_integral := hW.integral_VPhiR_sq
+     Phi_sq_fourier := hW.integral_VPhiR_sq_mul_cos
+     poisson := fun τ τ' => hW.hasSum_vHatR_mul p.T τ τ'
+-    b_ge_half := hb
++    b_ge_eighth := hb
+     b_le_a := hW.bv_le_av
+     a_le_one := hW.av_le_one
+     psi_integrable := by
+diff -ruN zeta23/Zeta23/ThmDE/Concrete.lean zeta23_patch/Zeta23/ThmDE/Concrete.lean
+--- zeta23/Zeta23/ThmDE/Concrete.lean	2026-10-02 16:44:00.925779226 +0200
++++ zeta23_patch/Zeta23/ThmDE/Concrete.lean	2026-10-02 17:32:21.366531230 +0200
+@@ -118,10 +118,14 @@
+     ?muints2, ?prop_trace, e_ends, ?Msplit, e_mumu, e_PP, ?sumJ, e_muP⟩
+   case ab_range =>
+     filter_upwards [eventually_ge_atTop T₀, eventually_L_ge P hP.lam_pos 8,
+-      eventually_L_ge P hP.lam_pos (2 * P.w)] with T hT hL8 hLw
++      eventually_L_ge P hP.lam_pos (2 * P.w), eventually_L_ge P hP.lam_pos (8 * P.w),
++      eventually_L_ge P hP.lam_pos (4 * π * P.w)] with T hT hL8 hLw h8w h4π
+     have hF := hT₀ T hT
+     have hL0 : 0 < P.L T := by linarith
+-    refine ⟨hF.b_ge_half, hF.b_le_a, hF.a_le_one, ?_, ?_⟩
++    -- `LocalHypsCore` only carries `1/8 ≤ b`; the Montgomery–Taylor window has `b ≥ 1/2` (BridgeD).
++    have hbD : 1 / 2 ≤ (P.localFunD T).b :=
++      ThmD.bv_phiD_ge_half hP.taper hP.lam_pos hP.lam_le_one hP.one_le_w h8w h4π
++    refine ⟨hbD, hF.b_le_a, hF.a_le_one, ?_, ?_⟩
+     · apply mul_nonneg (by positivity)
+       apply intervalIntegral.integral_nonneg (by linarith : (0:ℝ) ≤ P.L T)
+       intro y hy
+diff -ruN zeta23/Zeta23/XiPrime/Assembly.lean zeta23_patch/Zeta23/XiPrime/Assembly.lean
+--- zeta23/Zeta23/XiPrime/Assembly.lean	2026-10-02 16:44:00.928131543 +0200
++++ zeta23_patch/Zeta23/XiPrime/Assembly.lean	2026-10-02 17:32:01.800436234 +0200
+@@ -273,14 +273,14 @@
+   tail         — the prop:tail package for (Pf T) at height T with the standard rate θ₀ ≤ C·l·T^{λ/2−1}
+                  (from RvM.local_count of Z and the decay ‖φ̂_v(r−iy)‖ ≤ e^{L/4}‖φ_v″‖₁/|r−iy|², as
+                  Tail.TailHyp.tailInputs / ZeroSideD.eventually_tailPackageD);
+-  a_half       — a(T) = (1/L)∫φ_v² ≥ 1/2 eventually (v ≥ 27/40 on the window suffices for vQuartic). -/
++  a_quarter    — a(T) = (1/L)∫φ_v² ≥ 1/4 eventually (the flat and quartic windows have a ≥ 1/2). -/
+ structure WindowZeroSide (Z : ZeroConfig) (P : Params) (Pf : ℝ → Params) : Prop where
+   lam_eq : ∀ T, (Pf T).lam = P.lam
+   w_eq : ∀ T, (Pf T).w = P.w
+   poisson : ∀ᶠ T in atTop, ZeroSide.PoissonSq T (Pf T)
+   tail : ∃ θ₀ : ℝ → ℝ, (∀ᶠ T in atTop, Assembly.TailInputs Z (Pf T) T (θ₀ T)) ∧
+     ∃ C : ℝ, ∀ᶠ T in atTop, θ₀ T ≤ C * l T * T ^ (P.lam / 2 - 1)
+-  a_half : ∀ᶠ T in atTop, 1 / 2 ≤ (Pf T).a T
++  a_quarter : ∀ᶠ T in atTop, 1 / 4 ≤ (Pf T).a T
+ 
+ /-- the flat family fun _ => P satisfies WindowZeroSide (so §A2 is the special case). -/
+ theorem windowZeroSide_flat (Z : ZeroConfig) (hR : RiemannVonMangoldt Z) (P : Params) (hP : P.Valid) :
+@@ -313,13 +313,13 @@
+   have hL : ∀ T, (Pf T).L T = P.L T := fun T => by simp only [Params.L, hW.lam_eq]
+   obtain ⟨θ₀, hTail, Cθ, hθ⟩ := hW.tail
+   have hLtop := tendsto_L_atTop P hlam0
+-  have hapos := hW.a_half
++  have hapos := hW.a_quarter
+   refine ⟨θ₀, hTail, ?_, ?_⟩
+   · filter_upwards [hTail, hapos, hLtop.eventually_gt_atTop 0] with T hTl ha2 hLT
+     have hLpos : 0 < (Pf T).L T := by rw [hL]; exact hLT
+     exact div_nonneg hTl.theta_nonneg (by positivity)
+-  · have hup : Tendsto (fun T => 2 * |Cθ| * (l T * T ^ (P.lam / 2 - 1) / P.L T)) atTop (𝓝 0) := by
+-      simpa using (tendsto_theta_over_L P hlam0 hlam1).const_mul (2 * |Cθ|)
++  · have hup : Tendsto (fun T => 4 * |Cθ| * (l T * T ^ (P.lam / 2 - 1) / P.L T)) atTop (𝓝 0) := by
++      simpa using (tendsto_theta_over_L P hlam0 hlam1).const_mul (4 * |Cθ|)
+     refine tendsto_of_tendsto_of_tendsto_of_le_of_le' tendsto_const_nhds hup ?_ ?_
+     · filter_upwards [hTail, hapos, hLtop.eventually_gt_atTop 0] with T hTl ha2 hLT
+       have hLpos : 0 < (Pf T).L T := by rw [hL]; exact hLT
+@@ -333,9 +333,9 @@
+       calc θ₀ T ≤ Cθ * l T * T ^ (P.lam / 2 - 1) := hθT
+         _ ≤ |Cθ| * l T * T ^ (P.lam / 2 - 1) := by gcongr; exact le_abs_self _
+         _ = |Cθ| * (l T * T ^ (P.lam / 2 - 1) / P.L T) * P.L T := by field_simp
+-        _ ≤ (2 * |Cθ| * (l T * T ^ (P.lam / 2 - 1) / P.L T)) * ((Pf T).a T * P.L T) := by
++        _ ≤ (4 * |Cθ| * (l T * T ^ (P.lam / 2 - 1) / P.L T)) * ((Pf T).a T * P.L T) := by
+             have e : |Cθ| * (l T * T ^ (P.lam / 2 - 1) / P.L T) * P.L T
+-                = (2 * |Cθ| * (l T * T ^ (P.lam / 2 - 1) / P.L T)) * (1 / 2 * P.L T) := by ring
++                = (4 * |Cθ| * (l T * T ^ (P.lam / 2 - 1) / P.L T)) * (1 / 4 * P.L T) := by ring
+             rw [e]; gcongr
+ 
+ include hR hP hlam hW in
+@@ -354,7 +354,7 @@
+           * (4 + 2 * Real.sqrt (frobSq ((Pf T).hat T (Z.Gz (Pf T) T)))
+             + θ₀ T / ((Pf T).a T * (Pf T).L T))
+       ≤ (Z.N0s T (2 * T) : ℝ) := by
+-    filter_upwards [hTail, hW.poisson, hW.a_half, eventually_ge_atTop (0:ℝ),
++    filter_upwards [hTail, hW.poisson, hW.a_quarter, eventually_ge_atTop (0:ℝ),
+       hLtop.eventually_gt_atTop 0] with T hTl hPo ha2 hT0 hLT
+     have hLpos : 0 < (Pf T).L T := by rw [hL]; exact hLT
+     exact seamA_mult2 hT0 ZeroSide.phiHatConj ZeroSide.phiHatReal hPo hTl (by linarith) hLpos
+@@ -390,7 +390,7 @@
+           * (6 + 2 * Real.sqrt (frobSq ((Pf T).hat T (Z.Gz (Pf T) T)))
+             + θ₀ T / ((Pf T).a T * (Pf T).L T))
+       ≤ 2 * (Z.Nd T (2 * T) : ℝ) := by
+-    filter_upwards [hTail, hW.poisson, hW.a_half, eventually_ge_atTop (0:ℝ),
++    filter_upwards [hTail, hW.poisson, hW.a_quarter, eventually_ge_atTop (0:ℝ),
+       hLtop.eventually_gt_atTop 0] with T hTl hPo ha2 hT0 hLT
+     have hLpos : 0 < (Pf T).L T := by rw [hL]; exact hLT
+     exact seamA_mult3 hT0 ZeroSide.phiHatConj ZeroSide.phiHatReal hPo hTl (by linarith) hLpos
+diff -ruN zeta23/Zeta23/XiPrime/Inputs.lean zeta23_patch/Zeta23/XiPrime/Inputs.lean
+--- zeta23/Zeta23/XiPrime/Inputs.lean	2026-10-02 16:44:00.930090439 +0200
++++ zeta23_patch/Zeta23/XiPrime/Inputs.lean	2026-10-02 17:32:01.807884886 +0200
+@@ -79,7 +79,7 @@
+ re-expansion Reexpansion F e ρ₀ A T₀.  Everything else xiTraceTransfer_of
+ asks for is discharged here: P.Valid, λ/w constancy (rfl), LocalHypsCore eventually (flat:
+ localHypsCore_eventually ∘ admFamily_taper; quartic: localHypsCoreQ_eventually
+-transported along atV_toSetting / atV_localFun), H-Γ, a ≥ 1/2 (WindowZeroSide.a_half), H-RvM, and PPUpper
++transported along atV_toSetting / atV_localFun), H-Γ, a ≥ 1/4 (WindowZeroSide.a_quarter), H-RvM, and PPUpper
+ (frobSq_Ppart_le at PPInput := ppInput_of_PP, with H-MV := Zeta23.MV.mv_hilbert). -/
+ 
+ /-- **P2 for the flat family.** -/
+@@ -93,7 +93,7 @@
+   have hW := windowZeroSide_flat Z hR (paramsOf ϱ lam) hP
+   exact xiTraceTransfer_of Z (fun _ => paramsOf ϱ lam) F (paramsOf ϱ lam) hP h1 (fun _ => ⟨rfl, rfl⟩)
+     (localHypsCore_eventually (win := fun T => (paramsOf ϱ lam).phi T) hP (admFamily_taper hP)) gammaFacts
+-    ⟨1 / 2, by norm_num, hW.a_half⟩ hR hEF hρ₀ hE
++    ⟨1 / 4, by norm_num, hW.a_quarter⟩ hR hEF hρ₀ hE
+     (frobSq_Ppart_le ppInput_of_PP hMV hC _ _ ⟨h0, h1.le⟩)
+ 
+ /-- **P2 for the quartic family.** -/
+@@ -112,7 +112,7 @@
+     rw [Params.atV_toSetting, Params.atV_localFun T hP vQuartic_even]
+     exact hT₁ T hT
+   exact xiTraceTransfer_of Z _ F (paramsOf ϱ lam) hP h1 (fun _ => ⟨rfl, rfl⟩) hcore gammaFacts
+-    ⟨1 / 2, by norm_num, hW.a_half⟩ hR hEF hρ₀ hE
++    ⟨1 / 4, by norm_num, hW.a_quarter⟩ hR hEF hρ₀ hE
+     (frobSq_Ppart_le ppInput_of_PP hMV hC _ _ ⟨h0, h1.le⟩)
+ 
+ /-- **P2 for Z′ (W), flat family**, obtained from `wTraceTransfer_of` and `wReexpansion`; the one
+@@ -127,7 +127,7 @@
+   exact wTraceTransfer_of Z (fun _ => paramsOf ϱ lam) wCoeffFamily (paramsOf ϱ lam) hP h1
+     (fun _ => ⟨rfl, rfl⟩)
+     (localHypsCore_eventually (win := fun T => (paramsOf ϱ lam).phi T) hP (admFamily_taper hP)) gammaFacts
+-    ⟨1 / 2, by norm_num, hW.a_half⟩ hR hEF hρ₀ hE
++    ⟨1 / 4, by norm_num, hW.a_quarter⟩ hR hEF hρ₀ hE
+     (frobSq_Ppart_le ppInput_of_PP hMV hC _ _ ⟨h0, h1.le⟩)
+ 
+ /-- P1 for Z′, quartic window. -/
+@@ -152,7 +152,7 @@
+     rw [Params.atV_toSetting, Params.atV_localFun T hP vQuartic_even]
+     exact hT₁ T hT
+   exact wTraceTransfer_of Z _ wCoeffFamily (paramsOf ϱ lam) hP h1 (fun _ => ⟨rfl, rfl⟩) hcore gammaFacts
+-    ⟨1 / 2, by norm_num, hW.a_half⟩ hR hEF hρ₀ hE
++    ⟨1 / 4, by norm_num, hW.a_quarter⟩ hR hEF hρ₀ hE
+     (frobSq_Ppart_le ppInput_of_PP hMV hC _ _ ⟨h0, h1.le⟩)
+ 
+ end XiPrime
+diff -ruN zeta23/Zeta23/XiPrime/PrimeSide/Concrete.lean zeta23_patch/Zeta23/XiPrime/PrimeSide/Concrete.lean
+--- zeta23/Zeta23/XiPrime/PrimeSide/Concrete.lean	2026-10-02 16:44:00.930163732 +0200
++++ zeta23_patch/Zeta23/XiPrime/PrimeSide/Concrete.lean	2026-10-02 17:32:01.770415666 +0200
+@@ -67,10 +67,10 @@
+ 
+ /-! ## The concrete data -/
+ 
+-/-- an admissible window family at scale `(P.L T, P.w)` with `b ≥ 1/2`, eventually in `T`. -/
++/-- an admissible window family at scale `(P.L T, P.w)` with `b ≥ 1/8`, eventually in `T`. -/
+ def AdmFamily (P : Params) (win : ℝ → ℝ → ℝ) (cW : ℝ) : Prop :=
+   ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T →
+-    AdmWindow (win T) (P.L T) P.w cW ∧ 1 / 2 ≤ AdmWindow.bv (win T) (P.L T)
++    AdmWindow (win T) (P.L T) P.w cW ∧ 1 / 8 ≤ AdmWindow.bv (win T) (P.L T)
+ 
+ section Data
+ variable (P : Params) (win : ℝ → ℝ → ℝ) (Fam : CoeffFamily) (cPi : ℝ) (Ncnt : ℝ → ℝ)
+@@ -218,7 +218,7 @@
+   have hCore : ∀ᶠ T in atTop, LocalHypsCore cW (P.toSetting T) (Fw P win T) :=
+     eventually_atTop.2 ⟨T₁, hT₁⟩
+   have hAdm : ∀ᶠ T in atTop,
+-      AdmWindow (win T) (P.L T) P.w cW ∧ 1 / 2 ≤ AdmWindow.bv (win T) (P.L T) :=
++      AdmWindow (win T) (P.L T) P.w cW ∧ 1 / 8 ≤ AdmWindow.bv (win T) (P.L T) :=
+     eventually_atTop.2 ⟨Tw, hTw⟩
+   obtain ⟨C₁, hC₁0, hS1⟩ := S1_eventually hP hF
+   obtain ⟨C₂, hC₂0, hS2⟩ := sumSq_eventually hP hF
+diff -ruN zeta23/Zeta23/XiPrime/PrimeSide/Moments.lean zeta23_patch/Zeta23/XiPrime/PrimeSide/Moments.lean
+--- zeta23/Zeta23/XiPrime/PrimeSide/Moments.lean	2026-10-02 16:44:00.930255400 +0200
++++ zeta23_patch/Zeta23/XiPrime/PrimeSide/Moments.lean	2026-10-02 17:32:01.790853646 +0200
+@@ -91,7 +91,7 @@
+ /-- **CoeffMoments for a height-indexed parameter family** whose scalars are `P`'s and whose taper
+ data at height `T` are those of the window `(Pf T).phi T` (the three identities hold by `rfl` for
+ `Pf := fun _ => P` and for `Pf := P.atV v`).  Inputs: P.Valid, λ < 1, the window family is admissible
+-(Zeta23.AdmWindow, b ≥ 1/2) eventually, CoeffFamily.Hyps, H-Γ, H-MV, [prop:PP] for P_c (PPInput),
++(Zeta23.AdmWindow, b ≥ 1/8) eventually, CoeffFamily.Hyps, H-Γ, H-MV, [prop:PP] for P_c (PPInput),
+ H-RvM for `Z`, and the window limit `cRatio(λ₁; a_T, b_T, J_T) → c∞ > 0`.  Output: `CoeffMoments Z Pf Fam c∞⁻¹`. -/
+ theorem momentsW_of_family {P : Params} {Pf : ℝ → Params} {Fam : CoeffFamily} {cW : ℝ}
+     {Z : ZeroConfig} (cPi : ℝ) (hP : P.Valid) (hlam1 : P.lam < 1)
+@@ -115,7 +115,7 @@
+   have haLne : ∀ᶠ T in atTop, AdmWindow.av (win T) (P.L T) * P.L T ≠ 0 := by
+     filter_upwards [eventually_ge_atTop Tw, eventually_L_ge P hP.lam_pos 1] with T hT hL
+     obtain ⟨hW, hb⟩ := hTw T hT
+-    have ha : 1 / 2 ≤ AdmWindow.av (win T) (P.L T) := hb.trans hW.bv_le_av
++    have ha : 1 / 8 ≤ AdmWindow.av (win T) (P.L T) := hb.trans hW.bv_le_av
+     exact mul_ne_zero (by linarith) (by linarith)
+   -- rewrite the statement's hat-unit quantities into the concrete data
+   have htr_eq : ∀ T, rtrace ((Pf T).hat T ((Pf T).GpCW T cPi (Fam.c T)))
+diff -ruN zeta23/Zeta23/XiPrime/PrimeSide/Traces.lean zeta23_patch/Zeta23/XiPrime/PrimeSide/Traces.lean
+--- zeta23/Zeta23/XiPrime/PrimeSide/Traces.lean	2026-10-02 16:44:00.930348484 +0200
++++ zeta23_patch/Zeta23/XiPrime/PrimeSide/Traces.lean	2026-10-02 17:32:01.793236584 +0200
+@@ -194,7 +194,7 @@
+ /-- the lem_ends-scale remainder `R_T := L·l³·log l·(1 + X)` that absorbs every first-form error. -/
+ def Rxi (P : Params) (T : ℝ) : ℝ := P.L T * l T ^ 3 * Real.log (l T) * (1 + P.X T)
+ 
+-/-- the comparison scale of the second trace: `M⋆ := T·L·l²` (`≤ 4π · mainTr2Xi`). -/
++/-- the comparison scale of the second trace: `M⋆ := T·L·l²` (`≤ 16π · mainTr2Xi`). -/
+ def Mstar (P : Params) (T : ℝ) : ℝ := T * P.L T * l T ^ 2
+ 
+ /-- **Hypotheses of the ξ′ two-trace assembly** = the §5 sub-results for the density
+@@ -204,8 +204,8 @@
+   lam_pos : 0 < P.lam
+   lam_lt_one : P.lam < 1
+   one_le_w : 1 ≤ P.w
+-  /-- window ranges [eq:abJ]: `1/2 ≤ b ≤ a ≤ 1`, `0 ≤ J_T` eventually. -/
+-  ab_range : ∀ᶠ T in atTop, 1 / 2 ≤ D.bT T ∧ D.bT T ≤ D.aT T ∧ D.aT T ≤ 1 ∧ 0 ≤ D.JT T
++  /-- window ranges [eq:abJ]: `1/8 ≤ b ≤ a ≤ 1`, `0 ≤ J_T` eventually. -/
++  ab_range : ∀ᶠ T in atTop, 1 / 8 ≤ D.bT T ∧ D.bT T ≤ D.aT T ∧ D.aT T ≤ 1 ∧ 0 ≤ D.JT T
+   /-- H-RvM-type: `N = T ℓ₁/2π + O(l)`. -/
+   rvm : EvBound (fun T => D.Ncnt T - T * ell1 T / (2 * π)) l
+   /-- [eq:muints]: `∫_T^{2T} μ² = (Tℓ₁²/4π²)(1 + O(l⁻²))`. -/
+@@ -311,13 +311,13 @@
+ theorem tr1' : D.trG ~[atTop] (fun T => D.aT T * P.L T * D.Ncnt T) := by
+   show (D.trG - fun T => D.aT T * P.L T * D.Ncnt T) =o[atTop] _
+   have hlam := h.lam_pos
+-  refine evBound_isLittleO_of_le_mul (E := fun T => 8 * π * T ^ (P.lam / 2 - 1)) h.prop_trace
+-    (by simpa using (tendsto_rpow_half_lam_sub_one P (by linarith [h.lam_lt_one])).const_mul (8 * π)) ?_
++  refine evBound_isLittleO_of_le_mul (E := fun T => 32 * π * T ^ (P.lam / 2 - 1)) h.prop_trace
++    (by simpa using (tendsto_rpow_half_lam_sub_one P (by linarith [h.lam_lt_one])).const_mul (32 * π)) ?_
+   filter_upwards [regime h, Ncnt_lower h, h.ab_range] with T ⟨hT, hl, _u0, hL, _u1, _u2, _u3, _u4⟩ hN hab
+   obtain ⟨hb2, hba, _u0, _u1⟩ := hab
+   have hπ := Real.pi_pos
+   have hT0 : 0 < T := by linarith
+-  have ha2 : 1 / 2 ≤ D.aT T := hb2.trans hba
++  have ha2 : 1 / 8 ≤ D.aT T := hb2.trans hba
+   have hs : Real.sqrt (P.X T) ≤ T ^ (P.lam / 2 - 1) * T := by
+     rw [rpow_half_sub_one_mul hT0]; exact sqrt_X_le_rpow P hlam hT0
+   have hTl : T * l T ≤ 4 * π * D.Ncnt T := by
+@@ -325,8 +325,8 @@
+   calc P.L T * Real.sqrt (P.X T) * l T ≤ P.L T * (T ^ (P.lam / 2 - 1) * T) * l T := by gcongr
+     _ = T ^ (P.lam / 2 - 1) * P.L T * (T * l T) := by ring
+     _ ≤ T ^ (P.lam / 2 - 1) * P.L T * (4 * π * D.Ncnt T) := by gcongr
+-    _ = 8 * π * T ^ (P.lam / 2 - 1) * ((1 / 2) * P.L T * D.Ncnt T) := by ring
+-    _ ≤ 8 * π * T ^ (P.lam / 2 - 1) * (D.aT T * P.L T * D.Ncnt T) := by
++    _ = 32 * π * T ^ (P.lam / 2 - 1) * ((1 / 8) * P.L T * D.Ncnt T) := by ring
++    _ ≤ 32 * π * T ^ (P.lam / 2 - 1) * (D.aT T * P.L T * D.Ncnt T) := by
+         have : 0 ≤ D.Ncnt T := by
+           have : (0:ℝ) ≤ T * l T / (4 * π) := by positivity
+           linarith
+@@ -382,22 +382,22 @@
+   filter_upwards [h.Msplit] with T hM
+   rw [hM]; ring
+ 
+-/-- `M⋆ ≤ 4π · (TL/2π)(bℓ₁² + L²J)` and positivity of the main term, eventually. -/
++/-- `M⋆ ≤ 16π · (TL/2π)(bℓ₁² + L²J)` and positivity of the main term, eventually. -/
+ private lemma Mstar_le : ∀ᶠ T in atTop,
+-    0 < Mstar P T ∧ Mstar P T ≤ 4 * π * mainTr2Xi P D.bT D.JT T := by
++    0 < Mstar P T ∧ Mstar P T ≤ 16 * π * mainTr2Xi P D.bT D.JT T := by
+   filter_upwards [regime h, h.ab_range] with T ⟨hT, hl, _u0, hL, _u1, _u2, _u3, _u4⟩ ⟨hb2, _u5, _u6, hJ0⟩
+   have hπ := Real.pi_pos
+   have hℓ : l T ≤ ell1 T := l_le_ell1 T
+   refine ⟨by unfold Mstar; positivity, ?_⟩
+   unfold Mstar mainTr2Xi
+-  have h1 : 4 * π * (T * P.L T / (2 * π) * (D.bT T * ell1 T ^ 2 + P.L T ^ 2 * D.JT T))
+-      = 2 * T * P.L T * (D.bT T * ell1 T ^ 2 + P.L T ^ 2 * D.JT T) := by
++  have h1 : 16 * π * (T * P.L T / (2 * π) * (D.bT T * ell1 T ^ 2 + P.L T ^ 2 * D.JT T))
++      = 8 * T * P.L T * (D.bT T * ell1 T ^ 2 + P.L T ^ 2 * D.JT T) := by
+     field_simp <;> ring
+   rw [h1]
+-  have h2 : l T ^ 2 ≤ 2 * (D.bT T * ell1 T ^ 2 + P.L T ^ 2 * D.JT T) := by
++  have h2 : l T ^ 2 ≤ 8 * (D.bT T * ell1 T ^ 2 + P.L T ^ 2 * D.JT T) := by
+     have : l T ^ 2 ≤ ell1 T ^ 2 := pow_le_pow_left₀ (by linarith) hℓ 2
+     nlinarith [mul_nonneg (sq_nonneg (P.L T)) hJ0, sq_nonneg (ell1 T)]
+-  calc T * P.L T * l T ^ 2 ≤ T * P.L T * (2 * (D.bT T * ell1 T ^ 2 + P.L T ^ 2 * D.JT T)) := by
++  calc T * P.L T * l T ^ 2 ≤ T * P.L T * (8 * (D.bT T * ell1 T ^ 2 + P.L T ^ 2 * D.JT T)) := by
+         gcongr
+     _ = _ := by ring
+ 
+@@ -450,11 +450,11 @@
+   -- sum, and compare M⋆ with the main term
+   have hsum := (oA.add oB).add oC
+   have hbig : Mstar P =O[atTop] mainTr2Xi P D.bT D.JT := by
+-    refine IsBigO.of_bound (4 * π) ?_
++    refine IsBigO.of_bound (16 * π) ?_
+     filter_upwards [Mstar_le h] with T ⟨h0, h1⟩
+     rw [Real.norm_eq_abs, Real.norm_eq_abs, abs_of_pos h0]
+     exact h1.trans (by
+-      have : 0 ≤ 4 * π := by positivity
++      have : 0 ≤ 16 * π := by positivity
+       nlinarith [le_abs_self (mainTr2Xi P D.bT D.JT T)])
+   have key := hsum.trans_isBigO hbig
+   show (D.trG2 - mainTr2Xi P D.bT D.JT) =o[atTop] mainTr2Xi P D.bT D.JT
+diff -ruN zeta23/Zeta23/XiPrime/QuarticWindow/Family.lean zeta23_patch/Zeta23/XiPrime/QuarticWindow/Family.lean
+--- zeta23/Zeta23/XiPrime/QuarticWindow/Family.lean	2026-10-02 16:44:00.930437818 +0200
++++ zeta23_patch/Zeta23/XiPrime/QuarticWindow/Family.lean	2026-10-02 17:32:01.785085343 +0200
+@@ -4,7 +4,7 @@
+ SPDX-License-Identifier: Apache-2.0
+ -/
+ /-
+-Zeta23/XiPrime/QuarticWindow/Family.lean — the quartic window as an `AdmFamily` (the admissible-window-with-b≥1/2
++Zeta23/XiPrime/QuarticWindow/Family.lean — the quartic window as an `AdmFamily` (the admissible-window-with-b≥1/8
+ bundle of Zeta23/XiPrime/PrimeSide/Concrete.lean), discharging the quartic P1 binder.
+ -/
+ import Zeta23.XiPrime.QuarticWindow.Moments
+@@ -19,10 +19,11 @@
+ 
+ variable {P : Params}
+ 
+-/-- **the quartic window family is admissible with b ≥ 1/2, from T₀ on** (window written as P.phiV vQuartic T). -/
++/-- **the quartic window family is admissible with b ≥ 1/2 (hence ≥ 1/8, as `AdmFamily` asks), from T₀ on** (window written as P.phiV vQuartic T). -/
+ theorem admFamily_phiV_quartic (hP : P.Valid) : AdmFamily P (fun T => P.phiV vQuartic T) (cQ P.ϱ) := by
+   obtain ⟨T₀, hT₀⟩ := eventually_atTop.mp (Params.eventually_w8 hP)
+-  exact ⟨T₀, fun T hT => ⟨admWindow_phiV_quartic hP (hT₀ T hT), bV_quartic_ge_half hP (hT₀ T hT)⟩⟩
++  exact ⟨T₀, fun T hT => ⟨admWindow_phiV_quartic hP (hT₀ T hT),
++    le_trans (by norm_num) (bV_quartic_ge_half hP (hT₀ T hT))⟩⟩
+ 
+ /-- same, with the window written as the height-T window of the realizing parameters `P.atV vQuartic T`. -/
+ theorem admFamily_atV_quartic (hP : P.Valid) :
+diff -ruN zeta23/Zeta23/XiPrime/QuarticWindow/Moments.lean zeta23_patch/Zeta23/XiPrime/QuarticWindow/Moments.lean
+--- zeta23/Zeta23/XiPrime/QuarticWindow/Moments.lean	2026-10-02 16:44:00.930480527 +0200
++++ zeta23_patch/Zeta23/XiPrime/QuarticWindow/Moments.lean	2026-10-02 17:31:27.585046382 +0200
+@@ -529,7 +529,7 @@
+   refine ⟨T₀, fun T hT => ?_⟩
+   obtain ⟨h1, h8, hX1⟩ := hT₀ T hT
+   exact AdmWindow.localHypsCore (P.toSetting T) (admWindow_phiV_quartic hP h8) hP.lam_pos hP.lam_le_one
+-    h1 hX1 (bV_quartic_ge_half hP h8)
++    h1 hX1 (le_trans (by norm_num) (bV_quartic_ge_half hP h8))
+ 
+ end XiPrime
+ end Zeta23
+diff -ruN zeta23/Zeta23/XiPrime/QuarticWindow/ZeroSide.lean zeta23_patch/Zeta23/XiPrime/QuarticWindow/ZeroSide.lean
+--- zeta23/Zeta23/XiPrime/QuarticWindow/ZeroSide.lean	2026-10-02 16:44:00.930561236 +0200
++++ zeta23_patch/Zeta23/XiPrime/QuarticWindow/ZeroSide.lean	2026-10-02 17:32:21.366671564 +0200
+@@ -7,7 +7,7 @@
+ Zeta23/XiPrime/QuarticWindow/ZeroSide.lean — the zero side for a MODULATED window P.atV v, and the quartic instance.
+ 
+ §1 is GENERIC in the profile v: given an admissibility witness T ↦ AdmWindow (P.phiV v T) (P.L T) P.w cW and the lower
+-bound 1/2 ≤ a_V(T) (both for 8w ≤ L_T), it proves lem:poisson, prop:block, the H-EF bridge, prop:tail (from the local zero
++bound 1/4 ≤ a_V(T) (both for 8w ≤ L_T), it proves lem:poisson, prop:block, the H-EF bridge, prop:tail (from the local zero
+ count only) and the bundle
+   windowZeroSide_atV_of : RiemannVonMangoldt Z → P.Valid → XiPrime.WindowZeroSide Z P (P.atV v)
+ (the general-profile family and the flat window can instantiate it as well).
+@@ -37,7 +37,7 @@
+ 
+ variable {v : ℝ → ℝ} {cW : ℝ} (hP : P.Valid) (hv : ∀ s, v (-s) = v s)
+   (hW : ∀ T : ℝ, 8 * P.w ≤ P.L T → AdmWindow (P.phiV v T) (P.L T) P.w cW)
+-  (ha : ∀ᶠ T in atTop, 1 / 2 ≤ (P.atV v T).a T)
++  (ha : ∀ᶠ T in atTop, 1 / 4 ≤ (P.atV v T).a T)
+ include hP hv hW
+ 
+ /-! ### lem:poisson and prop:block -/
+@@ -106,7 +106,7 @@
+ /-! ### The generic bundle -/
+ 
+ include ha in
+-/-- **the zero side of a modulated window**, from an admissibility witness and a_V ≥ 1/2. -/
++/-- **the zero side of a modulated window**, from an admissibility witness and a_V ≥ 1/4. -/
+ theorem windowZeroSide_atV_of (Z : ZeroConfig) (hR : RiemannVonMangoldt Z) : WindowZeroSide Z P (P.atV v) := by
+   obtain ⟨A₀, hA₀, hloc⟩ := hR.local_count
+   refine ⟨fun _ => rfl, fun _ => rfl, ?_, eventually_tailPackageV_of hP hv hW ha Z hA₀ hloc, ?_⟩
+@@ -207,13 +207,13 @@
+     ∃ θ₀ : ℝ → ℝ, (∀ᶠ T in atTop, Assembly.TailInputs Z (P.atV vQuartic T) T (θ₀ T)) ∧
+       ∃ C : ℝ, ∀ᶠ T in atTop, θ₀ T ≤ C * l T * T ^ (P.lam / 2 - 1) :=
+   eventually_tailPackageV_of hP vQuartic_even (fun _ h => admWindow_phiV_quartic hP h)
+-    ((eventually_aV_range hP).mono fun _ h => h.1) Z hA₀ hloc
++    ((eventually_aV_range hP).mono fun _ h => le_trans (by norm_num) h.1) Z hA₀ hloc
+ 
+ /-- **The quartic window's zero side.** -/
+ theorem windowZeroSide_atV (Z : ZeroConfig) (hR : RiemannVonMangoldt Z) (hP : P.Valid) :
+     WindowZeroSide Z P (P.atV vQuartic) :=
+   windowZeroSide_atV_of hP vQuartic_even (fun _ h => admWindow_phiV_quartic hP h)
+-    ((eventually_aV_range hP).mono fun _ h => h.1) Z hR
++    ((eventually_aV_range hP).mono fun _ h => le_trans (by norm_num) h.1) Z hR
+ 
+ end XiPrime
+ end Zeta23
+diff -ruN zeta23/Zeta23/XiPrime/Window/FlatAdm.lean zeta23_patch/Zeta23/XiPrime/Window/FlatAdm.lean
+--- zeta23/Zeta23/XiPrime/Window/FlatAdm.lean	2026-10-02 16:44:00.930868406 +0200
++++ zeta23_patch/Zeta23/XiPrime/Window/FlatAdm.lean	2026-10-02 17:32:01.776317429 +0200
+@@ -62,14 +62,15 @@
+   rw [bv_taper]; linarith [Params.three_quarters_le_b hP hwL]
+ 
+ /-- **The flat admissible family**, in the `AdmFamily` shape:
+-∃ T₀, ∀ T ≥ T₀, AdmWindow (P.phi T) (P.L T) P.w c_ϱ ∧ 1/2 ≤ bv. -/
++∃ T₀, ∀ T ≥ T₀, AdmWindow (P.phi T) (P.L T) P.w c_ϱ ∧ 1/8 ≤ bv. -/
+ theorem admFamily_taper {P : Params} (hP : P.Valid) :
+     ∃ T₀ : ℝ, ∀ T ≥ T₀, AdmWindow (P.phi T) (P.L T) P.w P.crho ∧
+-      1 / 2 ≤ AdmWindow.bv (P.phi T) (P.L T) := by
++      1 / 8 ≤ AdmWindow.bv (P.phi T) (P.L T) := by
+   have hev : ∀ᶠ T in atTop, 8 * P.w ≤ P.L T :=
+     (Assembly.tendsto_L_atTop P hP.lam_pos).eventually_ge_atTop _
+   obtain ⟨T₀, hT₀⟩ := Filter.eventually_atTop.mp hev
+-  exact ⟨T₀, fun T hT => ⟨admWindow_taper hP (hT₀ T hT), half_le_bv_taper hP (hT₀ T hT)⟩⟩
++  exact ⟨T₀, fun T hT => ⟨admWindow_taper hP (hT₀ T hT),
++    le_trans (by norm_num) (half_le_bv_taper hP (hT₀ T hT))⟩⟩
+ 
+ end XiPrime
+ end Zeta23

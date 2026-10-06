@@ -1,0 +1,5 @@
+N = 128: 128 configurations, positions with 12 decimals, smallest gap 0.9985
+weights: smallest 3.845e-06, largest 0.0466; change against the search at most 6.59e-10
+CERTIFIED: |N S(j) - j| <= 1e-30 for 0 < j < 128; weights sum to 1; points distinct
+share of simple points p = 0.6818403131   (1 + p)/2 = 0.8409201565
+tau0 = 1/(6 N^2) + tau/(2N) = 1.017253e-05; ceiling for V <= 10 B: 0.84095251

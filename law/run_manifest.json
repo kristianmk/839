@@ -1,0 +1,300 @@
+{
+ "written": "2026-10-04T23:09:45+02:00",
+ "note": "run_all.sh run in a clean export (git archive) of the commit, started 2026-10-04 21:01:57 +0200 with THREADS=9, seed 0",
+ "source_commit": "9160a699aa88f9c816754b891376dbb5f3312af8",
+ "sources": [
+  {
+   "file": "run_all.sh",
+   "bytes": 1260,
+   "sha256": "83c02f0a1e3281a4a4d7411d2fe5ef1bd6c142d56e60d9ad3acc07cc5446aca9",
+   "git_blob": "c005768b5117b770dcd6c3e51e911ce57a106e82",
+   "modified": "2026-10-04T19:58:45+02:00"
+  },
+  {
+   "file": "law_cg.py",
+   "bytes": 11343,
+   "sha256": "1dd2d3905d7c09e2b5bfc3ddef04795f473d03f88dbe544abd133aec8b036f83",
+   "git_blob": "b7129e690aed18bb429f0a77e8ec180e18c29da5",
+   "modified": "2026-10-04T19:58:45+02:00"
+  },
+  {
+   "file": "law_lp.py",
+   "bytes": 8519,
+   "sha256": "3307208de023c09f5981d9b472c7808f8f449aae81d208edb5e54ee99a5e4d7f",
+   "git_blob": "152567ab1d984c351ba19d5f7b2f24ad9361f283",
+   "modified": "2026-10-04T19:58:45+02:00"
+  },
+  {
+   "file": "law_oracle.cpp",
+   "bytes": 32302,
+   "sha256": "61a23e162a7b37a6b6c9a9c1c7cab82569269f77a51e3e55ff2c98173e3f3546",
+   "git_blob": "ac2d796c34c5d047f70a507f7e5cb67b79c2ddfb",
+   "modified": "2026-10-04T19:58:45+02:00"
+  },
+  {
+   "file": "CMakeLists.txt",
+   "bytes": 1773,
+   "sha256": "daa1e975ec721bfede68f3606fcc5d1127c4bfebe34416e37b9e20ef000232eb",
+   "git_blob": "844df42832e0407bfad228c316ea514dabfb9452",
+   "modified": "2026-10-04T19:58:45+02:00"
+  },
+  {
+   "file": "law_certify.py",
+   "bytes": 4428,
+   "sha256": "280d3e634e70341b64a25f806d106addaef6c7c0b66518ad33871e298125d8d9",
+   "git_blob": "2710a200e24513a1f56c554d4e642f55dd0c136f",
+   "modified": "2026-10-04T19:58:45+02:00"
+  },
+  {
+   "file": "law_check_iv.py",
+   "bytes": 2484,
+   "sha256": "867f781408f1f1e4867e58a38be6bd61e26ecee4dbd4c8ebe7ddbd1cb50f8093",
+   "git_blob": "1c6561363b3633b05a23bccc2954229d8eb7c331",
+   "modified": "2026-10-04T19:58:45+02:00"
+  }
+ ],
+ "other_files": [
+  {
+   "file": "law_oracle_test.py",
+   "bytes": 9033,
+   "sha256": "a6e7f97400d525505ef62e2818a9dfbdcede1761650c8935be9a28018e19bc0a",
+   "git_blob": "dbb1e7f7d754cb7e5f230c654c529c6e6e734628",
+   "modified": "2026-10-04T19:58:45+02:00"
+  },
+  {
+   "file": "law_manifest.py",
+   "bytes": 5034,
+   "sha256": "facadff6a7cc6cb8b879f7337d653d90c5e89fa0950e5bed246355e20dd2151a",
+   "git_blob": "026a5ff15297ab50b25b698a9baafb80dcc4116d",
+   "modified": "2026-10-04T19:58:45+02:00"
+  },
+  {
+   "file": ".clang-format",
+   "bytes": 395,
+   "sha256": "59b3d9a4a95a9267feb23fb00aaad3b4dcab57a89d5c50786f6d0aa6a1dd1424",
+   "git_blob": "1ad2ca019d6d89704933cc77f691264eb5f9fefb",
+   "modified": "2026-10-04T19:58:45+02:00"
+  },
+  {
+   "file": ".clang-tidy",
+   "bytes": 1885,
+   "sha256": "03473f011be65a24f04c7df2d2c01a0841098107da3e74df38999bf820632efa",
+   "git_blob": "62828c9a2183d2c69da0593f99257834a4e48554",
+   "modified": "2026-10-04T19:58:45+02:00"
+  }
+ ],
+ "binary": {
+  "file": "build/law_oracle",
+  "bytes": 76616,
+  "sha256": "659907964b92fe023bd2071eae909e2c85ec4a3ee35b8f17b61bcd2663fb1d8d",
+  "git_blob": "1d8a9441674aadb7a55e690d55cc650448086696",
+  "modified": "2026-10-04T21:01:58+02:00"
+ },
+ "build": {
+  "compiler": "c++ (Ubuntu 15.2.0-4ubuntu4) 15.2.0",
+  "cmake": "cmake version 3.31.6",
+  "build_type": "Release",
+  "flags_of_build_type": "-O3 -DNDEBUG",
+  "flags": "CXX_FLAGS = -O3 -DNDEBUG -std=c++23 -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wold-style-cast -Wcast-qual -Wdouble-promotion -Wfloat-equal -Wnull-dereference -Werror -Wuseless-cast -Wduplicated-cond -Wlogical-op -march=native -fopenmp",
+  "defines": "CXX_DEFINES = -D_GLIBCXX_ASSERTIONS"
+ },
+ "python": {
+  "version": "3.13.7",
+  "packages": {
+   "numpy": "2.5.3",
+   "scipy": "1.18.1",
+   "highspy": "1.15.1",
+   "python-flint": "0.9.0",
+   "mpmath": "1.4.1"
+  }
+ },
+ "machine": {
+  "architecture": "aarch64",
+  "processor": "Apple / -",
+  "logical_cores": 12,
+  "system": "Linux-6.17.0-41-generic-aarch64-with-glibc2.42"
+ },
+ "git": {
+  "repository_head": "71ccae14af23ee5ad4ef812d390d1944ed98fed9",
+  "branch": "main",
+  "sources_tracked_in_this_repository": false,
+  "remark": "the files are an export of the commit named in source_commit; `git ls-tree -r` of that commit shows the same blob ids"
+ },
+ "results": [
+  {
+   "file": "law16.json",
+   "bytes": 5422,
+   "sha256": "ab965d4962f8811dde67b4f45115b2af3bc0000731df90a354397b91d1355d85",
+   "git_blob": "8475350965b6129ff6069950328c471eb79a38d3",
+   "modified": "2026-10-04T21:01:59+02:00"
+  },
+  {
+   "file": "law32.json",
+   "bytes": 20438,
+   "sha256": "330b7057ee14a07759ff7e93fd365d2137ea106c04708bd6330ce3717afcb5aa",
+   "git_blob": "9c9a120183586d005c5e1fee840c0c685da1244f",
+   "modified": "2026-10-04T21:02:02+02:00"
+  },
+  {
+   "file": "law64.json",
+   "bytes": 78981,
+   "sha256": "e32462842d4d3b46ae8fc6c8206d1164024739568b551bddf752a0f2a22a27e6",
+   "git_blob": "57be803dadbf3a52964e86c1523797045d766e70",
+   "modified": "2026-10-04T21:02:36+02:00"
+  },
+  {
+   "file": "law128.json",
+   "bytes": 313596,
+   "sha256": "79245f9b300a5593e1de4f9a5c73b4ef49cebb8a0191b04a5eceb81455295ee8",
+   "git_blob": "15a6cf418ed276fb4332dadc106d08a192e596b9",
+   "modified": "2026-10-04T21:08:53+02:00"
+  },
+  {
+   "file": "law256.json",
+   "bytes": 1258744,
+   "sha256": "1bf1da28a14a579f0c89ed86bbb638a7d24699592aaf728b2f53f6fe9dbe4eab",
+   "git_blob": "49ff8887886886c6e8bd84d579e3bccd3005a38f",
+   "modified": "2026-10-04T22:51:29+02:00"
+  },
+  {
+   "file": "law16_certified.json",
+   "bytes": 9405,
+   "sha256": "b9eff271362f3e700aa25cdba30a8e8f6768802f64d6853021c3280fd378b3b1",
+   "git_blob": "7f9050d2134e4faa19f7a6c42a19266dea48632a",
+   "modified": "2026-10-04T21:02:00+02:00"
+  },
+  {
+   "file": "law32_certified.json",
+   "bytes": 33008,
+   "sha256": "a408927f5dd687aba948239664a6b786f079546ca1ecdbc13e5b6cc768156e87",
+   "git_blob": "0011fff9107e11da495996c3a4073788d2c34eed",
+   "modified": "2026-10-04T21:02:02+02:00"
+  },
+  {
+   "file": "law64_certified.json",
+   "bytes": 124179,
+   "sha256": "53253ee0ae016d7975951b29e853040cecfc9f8924966f79a6bbb8e0c87de4b4",
+   "git_blob": "f9ac5f47fc2e285252b9aada6b37c53258f96e87",
+   "modified": "2026-10-04T21:02:38+02:00"
+  },
+  {
+   "file": "law128_certified.json",
+   "bytes": 486954,
+   "sha256": "e3f4e8d8208e38746fb72c57739a17949fa18bd971caa497202efcdda7169831",
+   "git_blob": "ac55af71a7cfde2890887d5e6cce0b21af24ac6a",
+   "modified": "2026-10-04T21:09:05+02:00"
+  },
+  {
+   "file": "law256_certified.json",
+   "bytes": 1936867,
+   "sha256": "7c0893d968172830c8f459efd28d3ae0bc0576100fb18a2d3da5314e0e8fbb38",
+   "git_blob": "3204d10cf784997227fa7ebc3be752a21cd5f9ea",
+   "modified": "2026-10-04T22:53:05+02:00"
+  },
+  {
+   "file": "law16.log",
+   "bytes": 14041,
+   "sha256": "eb8e3c56d279e83df0811d85bbae6407b8f66ef927c406c3af735dcf05844d52",
+   "git_blob": "1253464268c119141a9af6ebc4f702b67a23d7f2",
+   "modified": "2026-10-04T21:01:59+02:00"
+  },
+  {
+   "file": "law32.log",
+   "bytes": 18780,
+   "sha256": "e3e89c0309f4061de06653a19440ea06cc142b5513f72a7e3b254ed51a3ca15f",
+   "git_blob": "90da8f6d92f14fc8d9c17927e09db878fda457ec",
+   "modified": "2026-10-04T21:02:02+02:00"
+  },
+  {
+   "file": "law64.log",
+   "bytes": 74196,
+   "sha256": "c15d501097ebdea259644a77491c7017e7c2c012e99311432b7187b7043097a9",
+   "git_blob": "4146431027ecdfb54298576abf1813299fc1e30c",
+   "modified": "2026-10-04T21:02:36+02:00"
+  },
+  {
+   "file": "law128.log",
+   "bytes": 152217,
+   "sha256": "b0d0920ac2b0e378fd8797a0b02622de1b6b3f2fe803ac563d7c7b5f2f0d09bc",
+   "git_blob": "ff857b558e80380d9cac4e56ae8405f5bc21ed1a",
+   "modified": "2026-10-04T21:08:53+02:00"
+  },
+  {
+   "file": "law256.log",
+   "bytes": 308992,
+   "sha256": "1bd798c6e361a876b16dc80181f2bb6643f3b3f35da6506f0894d3e0a62f0668",
+   "git_blob": "71d35c73398d4c227d455f66c8c8d35db80dc5b7",
+   "modified": "2026-10-04T22:51:29+02:00"
+  },
+  {
+   "file": "certify16.log",
+   "bytes": 391,
+   "sha256": "6060f06a2a32bb8568f0e1dc115d758569172c8fd8b87cccef6e414730633761",
+   "git_blob": "e050380807a05b1a9ec6f9f640a58e0b53a283d2",
+   "modified": "2026-10-04T21:02:00+02:00"
+  },
+  {
+   "file": "certify32.log",
+   "bytes": 391,
+   "sha256": "0f03d74b3ebe805faaa436fa5badc3f253cc937728a88b27a2ca66138a9c5e31",
+   "git_blob": "fa7c28f4e917a5eb70e19a7d1c15c861ca036c97",
+   "modified": "2026-10-04T21:02:02+02:00"
+  },
+  {
+   "file": "certify64.log",
+   "bytes": 391,
+   "sha256": "6b5c831cc65bf816b442b75e9d49518195fcfc5d37854b65de6d0c3f81d76589",
+   "git_blob": "833c7ab8e7d38f89334aa952eb1f994b2d60b02a",
+   "modified": "2026-10-04T21:02:38+02:00"
+  },
+  {
+   "file": "certify128.log",
+   "bytes": 394,
+   "sha256": "736dc1794d3677254d02e77bb39b282befbd167b234dd84a3b1a1f5f8b540b61",
+   "git_blob": "0d15e4aee943768cd7163916b0e9b3bbd9cfc1a1",
+   "modified": "2026-10-04T21:09:05+02:00"
+  },
+  {
+   "file": "certify256.log",
+   "bytes": 394,
+   "sha256": "9a747b939bc00c0f97e4e54ede4eeacba5bee219b91b7355bb0352857064b31d",
+   "git_blob": "205c20dc3ce93aec985c6d4d9a97564a04ce0dce",
+   "modified": "2026-10-04T22:53:05+02:00"
+  },
+  {
+   "file": "check16.log",
+   "bytes": 210,
+   "sha256": "973e5e92b8b42bc161f423630a55efe0ed9ce8d291186998d0a43952b721f2d4",
+   "git_blob": "d9b04447e8419fe56fcb4c9d45bec95c4f70b042",
+   "modified": "2026-10-04T22:53:05+02:00"
+  },
+  {
+   "file": "check32.log",
+   "bytes": 210,
+   "sha256": "5362755e16539337deeec79bb30456e91fe96906f274364d2ca05d521cc5ee0d",
+   "git_blob": "3defdde5a18c911af47b5955de04c2c928d409bb",
+   "modified": "2026-10-04T22:53:07+02:00"
+  },
+  {
+   "file": "check64.log",
+   "bytes": 210,
+   "sha256": "169fcec43dbb75d4582b0d278987b2809f678ff14723fdcd730228dba4dda8e4",
+   "git_blob": "d5c7e803707204a47aa0a66799489e6756848dea",
+   "modified": "2026-10-04T22:53:20+02:00"
+  },
+  {
+   "file": "check128.log",
+   "bytes": 213,
+   "sha256": "6247174d211ec05b14b42408ded8512542fa13b8bfd003c86e86ab0472ebeaac",
+   "git_blob": "1261b55770e9da0d25ebb34d55bdbcac75492ec7",
+   "modified": "2026-10-04T22:55:08+02:00"
+  },
+  {
+   "file": "check256.log",
+   "bytes": 213,
+   "sha256": "7f47419e9a4bf842c6f18c724b1aa1b92988aad38a6bc03389771a43046b7374",
+   "git_blob": "f75b251303b66b18dfa95436c3224f6f067c7d27",
+   "modified": "2026-10-04T23:09:45+02:00"
+  }
+ ]
+}

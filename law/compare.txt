@@ -1,0 +1,26 @@
+identical: law16.json
+identical: law16_certified.json
+identical apart from timings: law16.log
+identical apart from timings: certify16.log
+identical apart from timings: check16.log
+identical: law32.json
+identical: law32_certified.json
+identical apart from timings: law32.log
+identical apart from timings: certify32.log
+identical apart from timings: check32.log
+identical: law64.json
+identical: law64_certified.json
+identical apart from timings: law64.log
+identical apart from timings: certify64.log
+identical apart from timings: check64.log
+identical: law128.json
+identical: law128_certified.json
+identical apart from timings: law128.log
+identical apart from timings: certify128.log
+identical apart from timings: check128.log
+identical: law256.json
+identical: law256_certified.json
+identical apart from timings: law256.log
+identical apart from timings: certify256.log
+identical apart from timings: check256.log
+identical: build/law_oracle

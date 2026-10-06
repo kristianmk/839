@@ -1,0 +1,210 @@
+Output of the five scripts scripts/PrintAxioms*.lean and of the five comparison files
+scripts/Compare*.lean in the working tree on 6 October 2026 (lake env lean scripts/<name>.lean).
+All ten compiled without error.
+
+== scripts/PrintAxioms839.lean
+'distinct_zeros_839' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Distinct839.Local.check_passes._native.native_decide.ax_1_1]
+'simple_zeros_678' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Distinct839.Local.check_passes._native.native_decide.ax_1_1]
+'Distinct839.localInequality' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Distinct839.Local.check_passes._native.native_decide.ax_1_1]
+'Distinct839.distinct_zeros_839_of_local' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Distinct839.localInequality_of_check' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Distinct839.kTabArray_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Distinct839.gramEnergy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Distinct839.transfer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Distinct839.separatedBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Distinct839.gramData' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Distinct839.distinct839_of' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Distinct839.simple_of_distinct' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Distinct839.Local.spot_lattice' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Distinct839.Local.spot_double' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Distinct839.Local.spot_corner' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Distinct839.Local.spot_vacancy' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+== scripts/PrintAxioms673.lean
+'simple_critical_zeros_673' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Simple673.Local.check_passes._native.native_decide.ax_1_1]
+'Simple673.localInequality' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Simple673.Local.check_passes._native.native_decide.ax_1_1]
+'Simple673.simple_critical_zeros_673_of_local' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Simple673.localInequality_of_check' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Simple673.localInequality_of_checkPar' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Simple673.kTabArray_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Simple673.betaBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Simple673.gramEnergy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Simple673.transfer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Simple673.Transfer.transfer_range7' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Simple673.majorantPointwise' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Simple673.separatedBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Simple673.windowStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Simple673.windowSide' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Simple673.windowMoments' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Simple673.kappaStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Simple673.gramDataLayer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Simple673.assembly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Simple673.Local.spot_trial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Simple673.Local.spot_second_trial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Simple673.Local.spot_corner' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Simple673.Local.spot_tightest' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+== scripts/PrintAxiomsFurther.lean
+'average_simple_and_critical_8367' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Simple673.Local.check_passes._native.native_decide.ax_1_1]
+'simple_or_critical_8891' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Distinct839.Local.check_passes._native.native_decide.ax_1_1]
+'Further.average_simple_and_critical_8367' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Simple673.Local.check_passes._native.native_decide.ax_1_1]
+'Further.simple_or_critical_8891' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Distinct839.Local.check_passes._native.native_decide.ax_1_1]
+'Further.average_simple_and_critical_8367_of_local' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Further.simple_or_critical_8891_of_local' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Further.average_of_layers' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Further.simple_or_line_of_layers' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Further.threshold2_eig_phiC' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Further.seam_block2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Further.count_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Further.Line.count_avg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Further.Line.seam_avg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Further.Line.avg_bound_family' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Further.Dist.seam_count_sl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Further.Dist.seam_sl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Further.Dist.sl_bound_family' depends on axioms: [propext, Classical.choice, Quot.sound]
+'N0mult_eq_library' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Nsimple_eq_library' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NsimpleOrLine_eq_library' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+== scripts/PrintAxioms889.lean
+'simple_or_critical_8893' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Line889.Local.check_passes._native.native_decide.ax_1_1]
+'Line889.simple_or_critical_8893' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Line889.Local.check_passes._native.native_decide.ax_1_1]
+'Line889.localInequality' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Line889.Local.check_passes._native.native_decide.ax_1_1]
+'Line889.simple_or_critical_8893_of_local' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.simple_or_critical_8893_of_layers' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.localInequality_of_check' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.kTab_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.kTabArray_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.windowStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.windowSide' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.windowMoments' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.kappaStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.kIntegral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.betaBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.majorantPointwise' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.lMajBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.separatedBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.gramDataLayer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.transfer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.gramEnergy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.assembly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.Transfer.transfer_range6' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.Gram.gramEnergy_explicit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.Assembly.seam_count_sl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.Assembly.seam_block_sl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.Assembly.seam_sl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.Assembly.sl_bound_family' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Further.seam_block2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Further.count_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NsimpleOrLine_eq_library' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.Local.spot_corner' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.Local.spot_lattice' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.Local.spot_tightest' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Line889.Local.spot_second' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+== scripts/PrintAxiomsCeilings.lean
+'ceiling_range6' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ceiling_range8' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ceiling_range10' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ceiling_all' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ceiling_line_range7' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ceiling_line_all' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ceilings.ceiling_range6' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ceilings.ceiling_range8' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ceilings.ceiling_range10' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ceilings.ceiling_all' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ceilings.ceiling_line_range7' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ceilings.ceiling_line_all' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ceilings.energyC_eq_kappa_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ceilings.energyCLine_eq_kappa_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ceilings.two_mul_integral_mul_vConv_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'energyFirst_eq_kappa' depends on axioms: [propext, Classical.choice, Quot.sound]
+'energySecond_eq_kappa' depends on axioms: [propext, Classical.choice, Quot.sound]
+'energyFirst_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'energySecond_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ceilings.GramCert.toPairCertAll' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ceilings.ceiling_gram' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ceilings.paper_certificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Distinct839.Local.check_passes._native.native_decide.ax_1_1]
+'Ceilings.line_certificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Simple673.Local.check_passes._native.native_decide.ax_1_1]
+
+== scripts/Compare839.lean
+'Chal.distinct_zeros_839' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Distinct839.Local.check_passes._native.native_decide.ax_1_1]
+'Chal.simple_zeros_678' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Distinct839.Local.check_passes._native.native_decide.ax_1_1]
+
+== scripts/Compare673.lean
+'Chal.simple_critical_zeros_673' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Simple673.Local.check_passes._native.native_decide.ax_1_1]
+
+== scripts/CompareFurther.lean
+'Chal.average_simple_and_critical_8367' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Simple673.Local.check_passes._native.native_decide.ax_1_1]
+'Chal.simple_or_critical_8891' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Distinct839.Local.check_passes._native.native_decide.ax_1_1]
+
+== scripts/Compare889.lean
+'Chal.simple_or_critical_8893' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Line889.Local.check_passes._native.native_decide.ax_1_1]
+
+== scripts/CompareCeilings.lean
+'Chal.ceiling_range6' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chal.ceiling_range8' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chal.ceiling_range10' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chal.ceiling_all' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chal.ceiling_line_range7' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chal.ceiling_line_all' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,109 @@
+# Additions to zeta23/lakefile.toml for the 83.9% distinct-zero bound.
+
+# The proof development.
+[[lean_lib]]
+name = "Distinct839"
+
+# The executable checker of the local inequality. It imports nothing from Mathlib and is compiled
+# to native code, so that `native_decide` evaluates it at native speed.
+[[lean_lib]]
+name = "Distinct839Checker"
+roots = ["Distinct839.Local.Checker"]
+precompileModules = true
+
+# Statement (Mathlib only, with `sorry`) and its proof.
+[[lean_lib]]
+name = "Challenge839"
+roots = ["Challenge839"]
+
+[[lean_lib]]
+name = "Solution839"
+roots = ["Solution839"]
+
+# Command line driver for the checker (diagnostics, not part of the proof).
+[[lean_exe]]
+name = "localcheck"
+root = "Distinct839.Local.RunCheck"
+
+# --- Simple673: more than 67.35% of the zeros are simple and on the critical line (second
+# window, frames of eight points). The proof development (imports Distinct839 and Zeta23).
+[[lean_lib]]
+name = "Simple673"
+
+# The executable checker of the eight-point inequality for the second window. It imports nothing
+# from Mathlib and is compiled to native code, so that `native_decide` evaluates it at native speed.
+[[lean_lib]]
+name = "Simple673Checker"
+roots = ["Simple673.Local.Checker"]
+precompileModules = true
+
+# Command line driver for the eight-point checker (diagnostics, not part of the proof).
+[[lean_exe]]
+name = "localcheck673"
+root = "Simple673.Local.RunCheck"
+
+# Statement (Mathlib only, with `sorry`) and its proof, for Simple673.
+[[lean_lib]]
+name = "Challenge673"
+roots = ["Challenge673"]
+
+[[lean_lib]]
+name = "Solution673"
+roots = ["Solution673"]
+
+# --- Ceilings: upper limits for what pair-energy certificates can give with the two windows
+# (trial states; imports Distinct839 and, for the second window, Simple673).
+[[lean_lib]]
+name = "Ceilings"
+
+# Statements of the ceilings from Mathlib alone (with `sorry`) and their proofs.
+[[lean_lib]]
+name = "ChallengeCeilings"
+roots = ["ChallengeCeilings"]
+
+[[lean_lib]]
+name = "SolutionCeilings"
+roots = ["SolutionCeilings"]
+
+# --- Further: two consequences of Simple673 and Distinct839 (the average of the proportions of
+# simple zeros and of zeros on the critical line; zeros that are simple or on the critical line).
+# The library has no root file; its modules are the files of `Further/`.
+[[lean_lib]]
+name = "Further"
+globs = ["Further.+"]
+
+# Statements from Mathlib alone (with `sorry`) and their proofs, for Further.
+[[lean_lib]]
+name = "ChallengeFurther"
+roots = ["ChallengeFurther"]
+
+[[lean_lib]]
+name = "SolutionFurther"
+roots = ["SolutionFurther"]
+
+# --- Line889: more than 88.93% of the zeros are simple or on the critical line (third window,
+# clipping level 2, and the count of Further with the threshold inequality at two levels).
+# The proof development (imports Distinct839, Simple673, Further and Zeta23).
+[[lean_lib]]
+name = "Line889"
+
+# The executable checker of the seven-point inequality for the third window. It imports nothing
+# from Mathlib and is compiled to native code, so that `native_decide` evaluates it at native speed.
+[[lean_lib]]
+name = "Line889Checker"
+roots = ["Line889.Local.Checker"]
+precompileModules = true
+
+# Command line driver for the third checker (diagnostics, not part of the proof).
+[[lean_exe]]
+name = "localcheck889"
+root = "Line889.Local.RunCheck"
+
+# Statement (Mathlib only, with `sorry`) and its proof, for Line889.
+[[lean_lib]]
+name = "Challenge889"
+roots = ["Challenge889"]
+
+[[lean_lib]]
+name = "Solution889"
+roots = ["Solution889"]
