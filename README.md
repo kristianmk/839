@@ -1,7 +1,7 @@
 # Ancillary files
 
 For the paper "More than 83.9% of the zeros of the Riemann zeta function are distinct and more
-than 67.35% are simple and on the critical line" by Kristian Muri Knausgård.
+than 67.35% are simple and on the critical line" by Kristian Muri Knausgård. <https://www.alphaxiv.org/abs/2610.08965>
 
 - `lean/` — the Lean 4 formalisation: the six theorems (developments `Distinct839/`,
   `Simple673/`, `Further/` and `Line889/`; statements from Mathlib alone in `Challenge839.lean`,
